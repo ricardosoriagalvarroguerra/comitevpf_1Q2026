@@ -1,35 +1,25 @@
 .debt-analysis {
   display: flex;
   flex-direction: column;
-  width: calc(100% + var(--space-4) + 24px);
-  margin-left: calc(-1 * var(--space-4));
-  margin-right: -24px;
+  width: 100%;
   gap: var(--space-3);
   flex: 1 1 auto;
   min-height: 0;
 }
 
-@media (min-width: 768px) {
-  .debt-analysis {
-    width: calc(100% + var(--space-6) + 24px);
-    margin-left: calc(-1 * var(--space-6));
-    margin-right: -24px;
-  }
-}
-
 @media (min-width: 1024px) {
   .debt-analysis {
-    width: calc(100% + var(--space-10) + 40px);
-    margin-left: calc(-1 * var(--space-10));
-    margin-right: -40px;
+    width: calc(100% + var(--space-6) + 16px);
+    margin-left: calc(-1 * var(--space-4));
+    margin-right: -16px;
   }
 }
 
 @media (min-width: 1280px) {
   .debt-analysis {
-    width: calc(100% + var(--space-12) + 48px);
-    margin-left: calc(-1 * var(--space-12));
-    margin-right: -48px;
+    width: calc(100% + var(--space-8) + 24px);
+    margin-left: calc(-1 * var(--space-6));
+    margin-right: -24px;
   }
 }
 
