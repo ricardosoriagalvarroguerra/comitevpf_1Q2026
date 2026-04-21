@@ -1,0 +1,20 @@
+.fonplata-logo {
+  display: block;
+  user-select: none;
+  opacity: 1;
+}
+
+.fonplata-logo--sm {
+  width: 28px;
+  height: auto;
+}
+
+.fonplata-logo--md {
+  width: 40px;
+  height: auto;
+}
+
+.fonplata-logo--lg {
+  width: 56px;
+  height: auto;
+}

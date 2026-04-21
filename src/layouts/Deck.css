@@ -1,0 +1,10 @@
+.deck {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.deck__stage {
+  transition: transform var(--duration-slide) var(--ease-slide);
+  will-change: transform;
+}

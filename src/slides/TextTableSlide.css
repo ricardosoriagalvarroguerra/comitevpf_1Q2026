@@ -1,0 +1,27 @@
+.text-table-slide {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1 1 auto;
+  gap: var(--space-6);
+}
+
+.text-table-slide__table {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .text-table-slide {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .text-table-slide__text {
+    flex: 0 0 320px;
+  }
+
+  .text-table-slide__table {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}

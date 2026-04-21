@@ -1,0 +1,46 @@
+.home-slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+}
+
+.home-slide__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 640px;
+  text-align: center;
+}
+
+/* Thin accent line above eyebrow */
+.home-slide__content::before {
+  content: '';
+  width: 48px;
+  height: 2px;
+  background: var(--color-accent);
+  margin-bottom: var(--space-6);
+  border-radius: 1px;
+}
+
+.home-slide__footer {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-10);
+}
+
+/* Premium gradient background */
+.home-slide__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 35%, rgba(17, 30, 56, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 25% 75%, rgba(201, 53, 69, 0.03) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 35% at 80% 60%, rgba(38, 74, 130, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+}

@@ -1,0 +1,68 @@
+.debt-auth {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: var(--space-6);
+}
+
+.debt-auth__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.debt-auth__text > * {
+  flex: 1;
+}
+
+@media (min-width: 1024px) {
+  .debt-auth {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .debt-auth__text {
+    flex: 0 0 280px;
+  }
+
+  .debt-auth__right {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.debt-auth__right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-height: 0;
+}
+
+.debt-auth__right > * {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.debt-auth__donut-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.debt-auth__donut-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.debt-auth__donut-title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+}
+
+.debt-auth__donut-body {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,29 @@
+.dual-charts {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--space-6);
+}
+
+.dual-charts__top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.dual-charts__text,
+.dual-charts__chart {
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .dual-charts__top {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+}
+
+.dual-charts__chart--primary {
+  width: 100%;
+}

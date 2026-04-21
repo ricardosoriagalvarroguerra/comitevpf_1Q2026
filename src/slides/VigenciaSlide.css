@@ -1,0 +1,101 @@
+.vigencia-slide {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: var(--space-3);
+}
+
+.vigencia-slide__text {
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.vigencia-slide__text > .text-card {
+  height: auto !important;
+  padding: var(--space-3) var(--space-4) !important;
+}
+
+.vigencia-slide__tables {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+@media (min-width: 1024px) {
+  .vigencia-slide__tables {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+}
+
+.vigencia-slide__table {
+  display: flex !important;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.vigencia-slide__table .table-card__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+.vigencia-slide__table .table-card__th {
+  position: sticky;
+  top: 0;
+  background: var(--color-surface);
+  z-index: 1;
+}
+
+.vigencia-slide__table .table-card__th,
+.vigencia-slide__table .table-card__td {
+  padding: var(--space-1-5) var(--space-2);
+  font-size: var(--text-2xs);
+  line-height: var(--leading-snug);
+}
+
+.vigencia-slide__table .table-card__th {
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* ── Total badge ── */
+.vigencia-slide__total-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  padding: 4px var(--space-2);
+  background: color-mix(in srgb, var(--color-accent) 10%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 30%, var(--color-border-soft));
+  border-radius: var(--radius-sm);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.vigencia-slide__total-label {
+  font-size: 10px;
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-muted);
+}
+
+.vigencia-slide__total-value {
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  color: var(--color-accent);
+}
+
+.vigencia-slide__total-unit {
+  font-size: 10px;
+  font-weight: var(--font-semibold);
+  color: var(--color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}

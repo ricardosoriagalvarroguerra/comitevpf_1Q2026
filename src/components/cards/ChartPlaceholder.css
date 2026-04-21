@@ -1,0 +1,165 @@
+.chart-placeholder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-height: 260px;
+}
+
+.chart-placeholder--full {
+  height: 100%;
+}
+
+/* ── Header ── */
+.chart-placeholder__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--space-3);
+  position: relative;
+  min-height: 32px;
+}
+
+.chart-placeholder__tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+  font-size: var(--text-2xs);
+  color: var(--color-text);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.chart-placeholder__tooltip-label {
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.chart-placeholder__tooltip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.chart-placeholder__tooltip-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.chart-placeholder__tooltip-name {
+  color: var(--color-text-muted);
+}
+
+.chart-placeholder__tooltip-value {
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-placeholder__tooltip-item--total .chart-placeholder__tooltip-name {
+  color: var(--color-text);
+  font-weight: var(--font-semibold);
+}
+
+.chart-placeholder__header-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+}
+
+.chart-placeholder__subtitle {
+  font-size: var(--text-2xs);
+  font-weight: var(--font-semibold);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.chart-placeholder__title {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-text);
+  letter-spacing: var(--tracking-tight);
+}
+
+.chart-placeholder__unit {
+  font-size: var(--text-2xs);
+  color: var(--color-text-subtle);
+  letter-spacing: var(--tracking-wide);
+}
+
+.chart-placeholder__actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* ── Canvas (the placeholder area) ── */
+.chart-placeholder__canvas {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-alt);
+  min-height: 160px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle dot grid pattern instead of harsh lines */
+.chart-placeholder__canvas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--color-gray-300) 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  opacity: 0.4;
+}
+
+.chart-placeholder__icon-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.chart-placeholder__icon {
+  width: 36px;
+  height: 36px;
+  color: var(--color-gray-400);
+  opacity: 0.6;
+}
+
+.chart-placeholder__label {
+  font-size: var(--text-2xs);
+  font-weight: var(--font-medium);
+  color: var(--color-text-subtle);
+  letter-spacing: var(--tracking-wide);
+}
+
+.chart-placeholder__svg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  max-height: 280px;
+  display: block;
+}

@@ -1,0 +1,287 @@
+.donut-matrix {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--space-3);
+}
+
+.donut-matrix__rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.donut-matrix__row-card {
+  display: grid;
+  grid-template-columns: minmax(160px, 200px) 1fr;
+  gap: var(--space-4);
+  align-items: center;
+  background: color-mix(in srgb, var(--color-surface) 92%, var(--color-surface-alt));
+  box-shadow: none;
+  border: 1px solid var(--color-border-soft);
+  padding: var(--space-3) var(--space-4) !important;
+}
+
+.donut-matrix__row-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.donut-matrix__row-title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  letter-spacing: var(--tracking-tight);
+}
+
+.donut-matrix__fs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-left: auto;
+  border-radius: 4px;
+  color: var(--color-text-subtle);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  opacity: 0.7;
+  transition:
+    opacity var(--duration-fast) var(--ease-default),
+    background var(--duration-fast) var(--ease-default),
+    color var(--duration-fast) var(--ease-default),
+    border-color var(--duration-fast) var(--ease-default);
+}
+
+.donut-matrix__fs-btn:hover {
+  opacity: 1;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border-soft);
+}
+
+.donut-matrix__row-values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.donut-matrix__cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+}
+
+.donut-matrix__cell-year {
+  font-size: 10px;
+  font-weight: var(--font-medium);
+  color: var(--color-text-subtle);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Donut cell ── */
+.donut-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donut-cell__svg {
+  display: block;
+  overflow: visible;
+}
+
+.donut-cell__slice {
+  transition: opacity 320ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.donut-cell__label {
+  font-size: 8px;
+  font-weight: var(--font-bold);
+  fill: #1a1a1a;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.donut-cell__total-value {
+  font-weight: var(--font-semibold);
+  fill: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  letter-spacing: -0.02em;
+}
+
+.donut-cell__total-unit {
+  fill: var(--color-text-subtle);
+  font-weight: var(--font-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.donut-cell__tooltip {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  transform: translate(-100%, 0);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-1-5) var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+  font-size: var(--text-2xs);
+  color: var(--color-text);
+  white-space: nowrap;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.donut-cell__tooltip-head {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: var(--font-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.donut-cell__tooltip-swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.donut-cell__tooltip-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--font-semibold);
+}
+
+.donut-cell__tooltip-pct {
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Fullscreen row ── */
+.donut-matrix__row-card--fullscreen {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 200;
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-surface, #fff) !important;
+  padding: var(--space-6) var(--space-8) !important;
+  display: flex !important;
+  flex-direction: column;
+  gap: var(--space-5);
+  box-shadow: none;
+  border: none;
+  box-sizing: border-box;
+}
+
+.donut-matrix__row-card--fullscreen .donut-matrix__row-values {
+  flex: 1;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.donut-matrix__row-card--fullscreen .donut-matrix__cell-year {
+  font-size: var(--text-xs);
+}
+
+.donut-matrix__row-card--fullscreen .donut-matrix__fs-btn {
+  width: 28px;
+  height: 28px;
+}
+
+/* ── Legend ── */
+.donut-matrix__legend {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: var(--space-1);
+}
+
+.donut-matrix__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.donut-matrix__legend-swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  opacity: 0.72;
+}
+
+.donut-matrix__cell--legend {
+  justify-content: center;
+}
+
+.donut-matrix__inline-legend {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  row-gap: var(--space-1-5);
+  column-gap: var(--space-3);
+  justify-content: center;
+  align-items: center;
+}
+
+.donut-matrix__inline-legend .donut-matrix__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+}
+
+.donut-matrix__inline-legend .donut-matrix__legend-swatch {
+  width: 10px;
+  height: 10px;
+}
+
+.donut-matrix__inline-legend .donut-matrix__legend-label {
+  font-size: var(--text-xs);
+  color: var(--color-text);
+  font-weight: var(--font-medium);
+}
+
+.donut-matrix__legend-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-weight: var(--font-medium);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 767px) {
+  .donut-matrix__row-card {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .donut-matrix__row-values {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .donut-matrix__row-header {
+    justify-content: center;
+  }
+
+  .donut-matrix__fs-btn {
+    margin-left: 0;
+  }
+}

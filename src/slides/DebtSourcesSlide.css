@@ -1,0 +1,216 @@
+.debt-sources {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1 1 auto;
+  gap: var(--space-4);
+  min-height: 0;
+}
+
+/* ── Header row: title card + value card ── */
+.debt-sources__header {
+  display: flex;
+  gap: var(--space-3);
+  align-items: stretch;
+  flex: 0 0 auto;
+}
+
+.debt-sources__header-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.debt-sources__header-text > .text-card {
+  height: 100%;
+}
+
+.debt-sources__value-card {
+  flex: 0 0 auto;
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  min-width: 220px;
+  padding: var(--space-3) var(--space-4) !important;
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 25%, var(--color-border-soft));
+  box-shadow: none;
+}
+
+.debt-sources__value-label {
+  font-size: 10px;
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-muted);
+}
+
+.debt-sources__value-number {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.debt-sources__value-unit {
+  font-size: 11px;
+  font-weight: var(--font-semibold);
+  color: var(--color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: 4px;
+}
+
+.debt-sources__value-detail {
+  font-size: var(--text-2xs);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.debt-sources__value-detail strong {
+  color: var(--color-text);
+  font-weight: var(--font-semibold);
+  margin-left: var(--space-1);
+}
+
+/* ── Tables layout ── */
+.debt-sources__tables {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.debt-sources__tables--dual {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+.debt-sources__tables--dual .table-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.debt-sources__tables--dual .table-card__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+.debt-sources__tables .table-card .table-card__th,
+.debt-sources__tables .table-card .table-card__td {
+  padding: var(--space-1-5) var(--space-2);
+  font-size: var(--text-2xs);
+  line-height: var(--leading-snug);
+  white-space: nowrap;
+}
+
+.debt-sources__tables .table-card .table-card__th {
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  position: sticky;
+  top: 0;
+  background: var(--color-surface);
+  z-index: 1;
+}
+
+/* ── Variant: stacked (Proyecciones de Desembolsos, 12 month columns) ── */
+.debt-sources--stacked > .text-card {
+  flex: 0 0 auto;
+  height: auto !important;
+  padding: var(--space-3) var(--space-4) !important;
+}
+
+.debt-sources__tables--stacked {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.debt-sources__tables--stacked .table-card {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.debt-sources__tables--stacked .table-card__header {
+  padding: var(--space-2) var(--space-4);
+}
+
+.debt-sources__tables--stacked .table-card__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+.debt-sources__tables--stacked .table-card__th,
+.debt-sources__tables--stacked .table-card__td {
+  padding: var(--space-1-5) var(--space-2);
+  font-size: var(--text-2xs);
+  line-height: var(--leading-snug);
+  white-space: nowrap;
+}
+
+.debt-sources__tables--stacked .table-card__th {
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ── Ejecutado / Proyectado differentiator ── */
+.debt-sources__tables--stacked .month-cell--ejecutado {
+  background: color-mix(in srgb, var(--color-accent) 7%, transparent);
+}
+
+.debt-sources__tables--stacked .month-cell--proyectado {
+  background: color-mix(in srgb, var(--color-text-muted) 4%, transparent);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.debt-sources__tables--stacked .table-card__tr--total .month-cell--proyectado,
+.debt-sources__tables--stacked .table-card__tr--total .month-cell--ejecutado {
+  color: var(--color-text);
+  font-style: normal;
+}
+
+.debt-sources__tables--stacked .month-cell--boundary {
+  border-left: 2px solid var(--color-accent);
+}
+
+.proyecciones-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  padding-right: var(--space-3);
+  border-right: 1px solid var(--color-border-soft);
+  margin-right: var(--space-1);
+}
+
+.proyecciones-legend__chip {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.proyecciones-legend__chip--ejecutado {
+  background: color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+
+.proyecciones-legend__chip--proyectado {
+  background: color-mix(in srgb, var(--color-text-muted) 30%, transparent);
+  margin-left: var(--space-2);
+}

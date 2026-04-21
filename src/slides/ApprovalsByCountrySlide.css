@@ -1,0 +1,97 @@
+.approvals-slide {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.approvals-slide__header {
+  position: relative;
+}
+
+.approvals-slide__header .approvals-slide__legend {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 6px var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+  font-variant-numeric: tabular-nums;
+  transition:
+    background var(--duration-fast) var(--ease-default),
+    border-color var(--duration-fast) var(--ease-default);
+}
+
+.approvals-slide__legend--hover {
+  background: color-mix(in srgb, var(--color-accent) 4%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border-soft));
+}
+
+.approvals-slide__legend-period {
+  font-size: 10px;
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-accent);
+  padding-right: var(--space-2);
+  border-right: 1px solid var(--color-border-soft);
+}
+
+.approvals-slide__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  font-size: var(--text-xs);
+  color: var(--color-text);
+  font-weight: var(--font-medium);
+  white-space: nowrap;
+}
+
+.approvals-slide__legend-value {
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  margin-left: 4px;
+  min-width: 36px;
+  text-align: right;
+}
+
+.approvals-slide__legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.approvals-slide__legend-line {
+  width: 14px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 1px;
+}
+
+.approvals-slide__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: minmax(0, 1fr);
+  gap: var(--space-3);
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.approvals-slide__card {
+  display: flex !important;
+  flex-direction: column;
+  background: color-mix(in srgb, var(--color-surface) 92%, var(--color-surface-alt));
+  box-shadow: none;
+  border: 1px solid var(--color-border-soft);
+  padding: var(--space-2) !important;
+  min-height: 0;
+  min-width: 0;
+}

@@ -1,0 +1,99 @@
+/* ── Global Styles ── */
+
+/* Chart fullscreen mode — hide navigation chrome */
+body.is-chart-fullscreen .slide-controls,
+body.is-chart-fullscreen .theme-toggle {
+  display: none !important;
+}
+
+
+:root {
+  font-family: var(--font-family);
+  font-weight: var(--font-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--color-bg);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(201, 53, 69, 0.14);
+  color: var(--color-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Smooth font rendering for numbers */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Print Styles (used by "Exportar PDF" → window.print) ── */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 12mm;
+  }
+
+  body, #root {
+    background: #fff !important;
+  }
+
+  /* Force all slides to be visible & stacked vertically with page breaks */
+  .deck,
+  .slide {
+    height: auto !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+
+  .deck__stage {
+    transform: none !important;
+  }
+
+  .slide {
+    page-break-after: always;
+    break-after: page;
+    min-height: 180mm;
+  }
+
+  .slide__inner {
+    opacity: 1 !important;
+    transform: none !important;
+    padding: 8mm !important;
+    overflow: visible !important;
+  }
+
+  /* Hide on-screen-only chrome */
+  .slide-controls,
+  .theme-toggle {
+    display: none !important;
+  }
+}
