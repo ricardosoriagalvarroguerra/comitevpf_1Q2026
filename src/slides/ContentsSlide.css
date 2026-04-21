@@ -12,6 +12,17 @@
   gap: var(--space-4);
 }
 
+.contents-slide__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.contents-slide__heading .fonplata-logo {
+  margin-left: auto;
+}
+
 .contents-slide__title {
   font-size: var(--text-2xl);
   font-weight: var(--font-bold);

@@ -28,8 +28,10 @@ export function ContentsSlide({ title, description, topics }: ContentsSlideProps
   return (
     <div className="contents-slide">
       <div className="contents-slide__intro">
-        <FonplataLogo size="md" />
-        <h2 className="contents-slide__title">{title}</h2>
+        <div className="contents-slide__heading">
+          <h2 className="contents-slide__title">{title}</h2>
+          <FonplataLogo size="md" />
+        </div>
         {description && <p className="contents-slide__desc">{description}</p>}
       </div>
       <div className="contents-slide__grid">
