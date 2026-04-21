@@ -7,32 +7,32 @@ import './AmortizationSlide.css'
 
 interface AmortRow {
   anio: string
-  hasta2024: number
-  en2025: number
+  resto: number
+  adq2026: number
 }
 
 const AMORT_DATA: AmortRow[] = [
-  { anio: '2026', hasta2024: 308.48, en2025: 1.70 },
-  { anio: '2027', hasta2024: 298.75, en2025: 35.69 },
-  { anio: '2028', hasta2024: 263.28, en2025: 79.09 },
-  { anio: '2029', hasta2024: 267.76, en2025: 3.27 },
-  { anio: '2030', hasta2024: 29.81, en2025: 274.46 },
-  { anio: '2031', hasta2024: 22.50, en2025: 134.06 },
-  { anio: '2032', hasta2024: 20.00, en2025: 52.59 },
-  { anio: '2033', hasta2024: 19.09, en2025: 2.59 },
-  { anio: '2034', hasta2024: 16.23, en2025: 2.59 },
-  { anio: '2035', hasta2024: 14.285, en2025: 2.59 },
-  { anio: '2036', hasta2024: 13.98, en2025: 2.59 },
-  { anio: '2037', hasta2024: 13.18, en2025: 2.59 },
-  { anio: '2038', hasta2024: 13.18, en2025: 2.59 },
-  { anio: '2039', hasta2024: 12.75, en2025: 2.59 },
-  { anio: '2040', hasta2024: 11.966, en2025: 2.71 },
-  { anio: '2041', hasta2024: 10.18, en2025: 1.11 },
-  { anio: '2042', hasta2024: 8.89, en2025: 1.11 },
-  { anio: '2043', hasta2024: 3.89, en2025: 1.11 },
-  { anio: '2044', hasta2024: 3.89, en2025: 1.11 },
-  { anio: '2045', hasta2024: 3.89, en2025: 1.11 },
-  { anio: '2046', hasta2024: 3.89, en2025: 1.11 },
+  { anio: '2026', resto: 310.18, adq2026: 0.00 },
+  { anio: '2027', resto: 334.44, adq2026: 3.18 },
+  { anio: '2028', resto: 342.37, adq2026: 6.36 },
+  { anio: '2029', resto: 271.02, adq2026: 6.66 },
+  { anio: '2030', resto: 304.27, adq2026: 6.97 },
+  { anio: '2031', resto: 156.55, adq2026: 6.97 },
+  { anio: '2032', resto: 72.59, adq2026: 6.97 },
+  { anio: '2033', resto: 21.68, adq2026: 0.60 },
+  { anio: '2034', resto: 18.82, adq2026: 0.60 },
+  { anio: '2035', resto: 66.88, adq2026: 0.60 },
+  { anio: '2036', resto: 16.57, adq2026: 0.60 },
+  { anio: '2037', resto: 15.77, adq2026: 0.60 },
+  { anio: '2038', resto: 15.77, adq2026: 0.60 },
+  { anio: '2039', resto: 15.34, adq2026: 0.60 },
+  { anio: '2040', resto: 74.67, adq2026: 0.60 },
+  { anio: '2041', resto: 11.29, adq2026: 0.30 },
+  { anio: '2042', resto: 10.00, adq2026: 0.00 },
+  { anio: '2043', resto: 5.00, adq2026: 0.00 },
+  { anio: '2044', resto: 5.00, adq2026: 0.00 },
+  { anio: '2045', resto: 5.00, adq2026: 0.00 },
+  { anio: '2046', resto: 5.00, adq2026: 0.00 },
 ]
 
 const COLOR_HASTA = '#adb5bd'
@@ -61,7 +61,7 @@ function AmortChart({ width, height }: AmortChartProps) {
   const innerH = height - margin.top - margin.bottom
 
   const totals = useMemo(
-    () => AMORT_DATA.map((r) => r.hasta2024 + r.en2025),
+    () => AMORT_DATA.map((r) => r.resto + r.adq2026),
     [],
   )
   const maxY = d3.max(totals) ?? 1
@@ -98,19 +98,19 @@ function AmortChart({ width, height }: AmortChartProps) {
         )}
         <span className="amort-chart__panel-row">
           <span className="amort-chart__panel-swatch" style={{ background: COLOR_HASTA }} />
-          <span className="amort-chart__panel-name">Deuda contratada hasta 2024</span>
+          <span className="amort-chart__panel-name">Deuda contratada hasta 2025</span>
           {hovered && (
             <strong className="amort-chart__panel-value">
-              {nf2.format(hovered.hasta2024)} MM
+              {nf2.format(hovered.resto)} MM
             </strong>
           )}
         </span>
         <span className="amort-chart__panel-row">
           <span className="amort-chart__panel-swatch" style={{ background: COLOR_2025 }} />
-          <span className="amort-chart__panel-name">Deuda contratada en 2025</span>
+          <span className="amort-chart__panel-name">Deuda contratada en 2026</span>
           {hovered && (
             <strong className="amort-chart__panel-value">
-              {nf2.format(hovered.en2025)} MM
+              {nf2.format(hovered.adq2026)} MM
             </strong>
           )}
         </span>
@@ -118,7 +118,7 @@ function AmortChart({ width, height }: AmortChartProps) {
           <span className="amort-chart__panel-row amort-chart__panel-row--total">
             <span className="amort-chart__panel-name">Total</span>
             <strong className="amort-chart__panel-value">
-              {nf2.format(hovered.hasta2024 + hovered.en2025)} MM
+              {nf2.format(hovered.resto + hovered.adq2026)} MM
             </strong>
           </span>
         )}
@@ -161,15 +161,15 @@ function AmortChart({ width, height }: AmortChartProps) {
             const bw = x.bandwidth()
             const isHover = hover === i
             const op = hover === null ? 0.85 : isHover ? 0.95 : 0.25
-            const yHasta = y(r.hasta2024)
-            const yTop = y(r.hasta2024 + r.en2025)
+            const yResto = y(r.resto)
+            const yTop = y(r.resto + r.adq2026)
             return (
               <g key={`bar-${r.anio}`}>
                 <rect
                   x={bx}
-                  y={yHasta}
+                  y={yResto}
                   width={bw}
-                  height={Math.max(0, innerH - yHasta)}
+                  height={Math.max(0, innerH - yResto)}
                   fill={COLOR_HASTA}
                   opacity={op}
                   rx={1.5}
@@ -178,7 +178,7 @@ function AmortChart({ width, height }: AmortChartProps) {
                   x={bx}
                   y={yTop}
                   width={bw}
-                  height={Math.max(0, yHasta - yTop)}
+                  height={Math.max(0, yResto - yTop)}
                   fill={COLOR_2025}
                   opacity={op}
                   rx={1.5}
@@ -187,7 +187,7 @@ function AmortChart({ width, height }: AmortChartProps) {
             )
           })}
           {AMORT_DATA.map((r) => {
-            const total = r.hasta2024 + r.en2025
+            const total = r.resto + r.adq2026
             if (total <= 0) return null
             const bx = x(r.anio) ?? 0
             const bw = x.bandwidth()
