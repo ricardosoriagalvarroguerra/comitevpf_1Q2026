@@ -27,12 +27,18 @@ const ROWS: Array<{ key: CarteraCategory; label: string }> = [
   { key: 'aprobadoNoVigente', label: 'Aprobado no vigente' },
 ]
 
-const YEARS = [2024, 2025, 2026] as const
-const YEAR_LABEL: Record<number, string> = {
-  2024: '4Q24',
-  2025: '4Q25',
-  2026: '4Q26 (Proy.)',
+interface PeriodDef {
+  id: string
+  label: string
+  year: number
+  quarter: 1 | 2 | 3 | 4
 }
+
+const PERIODS: PeriodDef[] = [
+  { id: 'Q4-25', label: '4Q25', year: 2025, quarter: 4 },
+  { id: 'Q1-26', label: '1Q26', year: 2026, quarter: 1 },
+  { id: 'Q4-26', label: '4Q26 (Proy.)', year: 2026, quarter: 4 },
+]
 
 interface Slice {
   country: CarteraCountry
@@ -40,10 +46,10 @@ interface Slice {
   color: string
 }
 
-function getSlices(category: CarteraCategory, year: number): Slice[] {
+function getSlices(category: CarteraCategory, period: PeriodDef): Slice[] {
   return COUNTRIES.map((c) => {
     const row = CARTERA_DATA.find(
-      (r) => r.country === c && r.year === year && r.quarter === 4,
+      (r) => r.country === c && r.year === period.year && r.quarter === period.quarter,
     )
     return { country: c, value: row?.[category] ?? 0, color: COLORS[c] }
   })
@@ -54,13 +60,13 @@ const fmt = (n: number) =>
 
 interface DonutProps {
   category: CarteraCategory
-  year: number
+  period: PeriodDef
   size: number
 }
 
-function Donut({ category, year, size }: DonutProps) {
+function Donut({ category, period, size }: DonutProps) {
   const [hover, setHover] = useState<CarteraCountry | null>(null)
-  const data = useMemo(() => getSlices(category, year), [category, year])
+  const data = useMemo(() => getSlices(category, period), [category, period])
   const total = data.reduce((s, d) => s + d.value, 0)
 
   const r = size / 2
@@ -234,39 +240,12 @@ function CategoryRow({ category, label }: CategoryRowProps) {
         </button>
       </div>
       <div className="donut-matrix__row-values">
-        {YEARS.map((y) => {
-          const isLegendSlot =
-            category === 'aprobadoNoVigente' && y === 2026 && !fullscreen
-          return (
-            <div
-              key={y}
-              className={`donut-matrix__cell ${
-                isLegendSlot ? 'donut-matrix__cell--legend' : ''
-              }`}
-            >
-              {isLegendSlot ? (
-                <div className="donut-matrix__inline-legend">
-                  {COUNTRIES.map((c) => (
-                    <div key={c} className="donut-matrix__legend-item">
-                      <span
-                        className="donut-matrix__legend-swatch"
-                        style={{ background: COLORS[c] }}
-                      />
-                      <span className="donut-matrix__legend-label">{c}</span>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <>
-                  <Donut category={category} year={y} size={donutSize} />
-                  <span className="donut-matrix__cell-year">
-                    {YEAR_LABEL[y]}
-                  </span>
-                </>
-              )}
-            </div>
-          )
-        })}
+        {PERIODS.map((p) => (
+          <div key={p.id} className="donut-matrix__cell">
+            <Donut category={category} period={p} size={donutSize} />
+            <span className="donut-matrix__cell-year">{p.label}</span>
+          </div>
+        ))}
       </div>
     </Card>
   )
@@ -285,6 +264,17 @@ export function DonutMatrixSlide() {
       <div className="donut-matrix__rows">
         {ROWS.map((r) => (
           <CategoryRow key={r.key} category={r.key} label={r.label} />
+        ))}
+      </div>
+      <div className="donut-matrix__legend" aria-label="Leyenda de países">
+        {COUNTRIES.map((c) => (
+          <div key={c} className="donut-matrix__legend-item">
+            <span
+              className="donut-matrix__legend-swatch"
+              style={{ background: COLORS[c] }}
+            />
+            <span className="donut-matrix__legend-label">{c}</span>
+          </div>
         ))}
       </div>
     </div>
