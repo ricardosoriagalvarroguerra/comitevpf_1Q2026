@@ -9,7 +9,25 @@
 
 .prevision-slide > .text-card {
   flex: 0 0 auto;
-  padding: var(--space-3) var(--space-4) !important;
+  padding: var(--space-2) var(--space-4) !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+.prevision-slide > .text-card .text-card__title {
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+}
+
+.prevision-slide > .text-card .text-card__eyebrow {
+  font-size: 10px;
+  margin-bottom: 2px;
+}
+
+.prevision-slide > .text-card .text-card__description {
+  font-size: var(--text-xs);
+  margin-top: 2px;
+  line-height: var(--leading-snug);
 }
 
 /* ── Table ── */
@@ -123,6 +141,14 @@
 .prevision-slide__chart > .chart-placeholder {
   flex: 1;
   min-height: 0;
+}
+
+.prevision-slide__chart .chart-placeholder__canvas {
+  background: transparent;
+}
+
+.prevision-slide__chart .chart-placeholder__canvas::before {
+  display: none;
 }
 
 @media (max-width: 768px) {
