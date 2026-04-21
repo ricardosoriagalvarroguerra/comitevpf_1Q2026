@@ -41,6 +41,13 @@ const CATEGORY_COLOR: Record<CarteraCategory, string> = Object.fromEntries(
 
 const COUNTRY_ORDER = CARTERA_COUNTRIES
 
+const PROJECTED_PERIODS = new Set(['Q2-26', 'Q3-26', 'Q4-26', '2026'])
+
+function formatPeriodLabel(period: string) {
+  const m = /^Q([1-4])-(\d{2})$/.exec(period)
+  return m ? `${m[1]}Q${m[2]}` : period
+}
+
 function quarterSort(row: CarteraRow) {
   return row.year * 10 + row.quarter
 }
@@ -463,6 +470,7 @@ function D3Chart({
     const xAxis = d3
       .axisBottom(x)
       .tickValues(data.map((d) => d.period).filter((_, i) => i % tickEvery === 0))
+      .tickFormat((d) => formatPeriodLabel(d as string))
       .tickSize(0)
       .tickPadding(8)
 
@@ -518,6 +526,20 @@ function D3Chart({
         .attr('width', x.bandwidth())
         .attr('rx', 1.5)
         .attr('opacity', 1)
+        .attr('fill-opacity', (d) =>
+          PROJECTED_PERIODS.has(d.v.data.period) ? 0.3 : 1,
+        )
+        .attr('stroke', (d) =>
+          PROJECTED_PERIODS.has(d.v.data.period)
+            ? CATEGORY_COLOR[d.key]
+            : 'none',
+        )
+        .attr('stroke-width', (d) =>
+          PROJECTED_PERIODS.has(d.v.data.period) ? 1 : 0,
+        )
+        .attr('stroke-dasharray', (d) =>
+          PROJECTED_PERIODS.has(d.v.data.period) ? '3 2' : null,
+        )
         .style('cursor', 'pointer')
 
       const clearHover = () => {
