@@ -41,7 +41,14 @@ const CATEGORY_COLOR: Record<CarteraCategory, string> = Object.fromEntries(
 
 const COUNTRY_ORDER = CARTERA_COUNTRIES
 
-const PROJECTED_PERIODS = new Set(['Q2-26', 'Q3-26', 'Q4-26', '2026'])
+const PROJECTED_PERIODS = new Set([
+  'Q2-26',
+  'Q3-26',
+  'Q4-26',
+  'Q1-27',
+  '2026',
+  '2027',
+])
 
 function formatPeriodLabel(period: string) {
   const m = /^Q([1-4])-(\d{2})$/.exec(period)
