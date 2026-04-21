@@ -167,25 +167,26 @@
   font-size: 11px;
 }
 
-/* Instrumento column wraps to its own width; numeric columns hug content */
+/* Instrumento column takes remaining space; numeric columns hug content */
 .debt-sources__tables .debt-sources__col-inst {
   white-space: normal;
   word-break: break-word;
   font-weight: var(--font-medium);
-  width: 1%;
-  padding-right: var(--space-1) !important;
+  width: auto;
+  padding-left: var(--space-3) !important;
+  padding-right: var(--space-2) !important;
 }
 
 .debt-sources__tables .debt-sources__col-num {
   font-variant-numeric: tabular-nums;
-  padding-left: var(--space-1) !important;
+  padding-left: var(--space-3) !important;
   padding-right: var(--space-1) !important;
   white-space: nowrap;
+  width: 1%;
 }
 
 .debt-sources__tables .debt-sources__col-num:last-child {
   padding-right: var(--space-3) !important;
-  width: 100%;
 }
 
 /* Unit pill in table header */
