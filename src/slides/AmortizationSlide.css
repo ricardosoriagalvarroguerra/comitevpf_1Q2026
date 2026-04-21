@@ -6,76 +6,92 @@
   flex: 1 1 auto;
   min-height: 0;
   gap: var(--space-3);
+  padding-left: 0;
 }
 
-/* ── Notes drawer ── */
+.amort-slide--notes-open {
+  padding-left: 300px;
+}
+
+/* ── Notes drawer (left side) ── */
 .amort-slide__notes-toggle {
   position: absolute;
-  top: var(--space-2);
-  right: 0;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 6px 10px;
+  gap: 6px;
+  padding: 10px 5px;
   background: var(--color-surface);
   border: 1px solid var(--color-border-soft);
-  border-right: none;
-  border-top-left-radius: var(--radius-sm);
-  border-bottom-left-radius: var(--radius-sm);
+  border-left: none;
+  border-top-right-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
   box-shadow: var(--shadow-card);
-  color: var(--color-text-secondary);
+  color: var(--color-text-subtle);
   cursor: pointer;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: var(--font-semibold);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   z-index: 5;
+  opacity: 0.55;
   transition:
-    transform var(--duration-normal) var(--ease-default),
+    left var(--duration-normal) var(--ease-default),
+    opacity var(--duration-fast) var(--ease-default),
     color var(--duration-fast) var(--ease-default),
     background var(--duration-fast) var(--ease-default);
 }
 
 .amort-slide__notes-toggle:hover {
+  opacity: 1;
   color: var(--color-accent);
   background: color-mix(in srgb, var(--color-accent) 6%, var(--color-surface));
 }
 
 .amort-slide--notes-open .amort-slide__notes-toggle {
-  transform: translateX(calc(-1 * var(--amort-drawer-w, 320px)));
+  left: 300px;
+  opacity: 1;
+  color: var(--color-accent);
 }
 
 .amort-slide__notes-toggle-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
   line-height: 1;
 }
 
 .amort-slide__notes {
-  --amort-drawer-w: 320px;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   bottom: 0;
-  width: var(--amort-drawer-w);
+  width: 300px;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   padding: var(--space-4);
   background: var(--color-surface);
   border: 1px solid var(--color-border-soft);
-  border-right: none;
-  border-top-left-radius: var(--radius-card, 10px);
-  border-bottom-left-radius: var(--radius-card, 10px);
-  box-shadow: -6px 0 18px -8px color-mix(in srgb, var(--color-text) 20%, transparent);
-  transform: translateX(100%);
-  transition: transform var(--duration-normal) var(--ease-default);
+  border-left: none;
+  border-top-right-radius: var(--radius-card, 10px);
+  border-bottom-right-radius: var(--radius-card, 10px);
+  box-shadow: 6px 0 18px -8px color-mix(in srgb, var(--color-text) 20%, transparent);
   z-index: 4;
   overflow-y: auto;
   pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-12px);
 }
 
-.amort-slide__notes.is-open {
-  transform: translateX(0);
+.amort-slide--notes-open .amort-slide__notes {
   pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
 }
 
 .amort-slide__notes-header {
