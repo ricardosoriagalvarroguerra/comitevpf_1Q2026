@@ -334,7 +334,7 @@ const FLUJOS_DATA: IfdMercadoRow[] = [
   { anio: '2023', ifd: 60.34, mercado: 54.02 },
   { anio: '2024', ifd: 180.34, mercado: 483.69 },
   { anio: '2025', ifd: 96.39, mercado: 621.98 },
-  { anio: '2026', ifd: 0, mercado: 0, ifdProy: 50, mercadoProy: 700 },
+  { anio: '2026', ifd: 42.22, mercado: 0, ifdProy: 7.78, mercadoProy: 700 },
 ]
 
 const COLOR_IFD = '#adb5bd'
