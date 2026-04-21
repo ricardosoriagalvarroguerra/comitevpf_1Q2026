@@ -1,11 +1,15 @@
 /* ── Typography Utilities ── */
 
 .text-hero {
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   font-weight: var(--font-bold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   color: var(--color-text);
+}
+
+@media (min-width: 480px) {
+  .text-hero { font-size: var(--text-3xl); }
 }
 
 @media (min-width: 768px) {

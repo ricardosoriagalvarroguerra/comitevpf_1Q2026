@@ -44,8 +44,8 @@ export const slides: SlideConfig[] = [
 
   // ── Endeudamiento ──
   { id: 'section-endeudamiento', type: 'section-title', variant: 'section' },
-  { id: 'analisis-endeudamiento', type: 'debt-analysis', variant: 'content' },
   { id: 'deuda-por-fuente', type: 'debt-sources', variant: 'content' },
+  { id: 'analisis-endeudamiento', type: 'debt-analysis', variant: 'content' },
   { id: 'perfil-amortizacion', type: 'amortization', variant: 'content' },
 ]
 
@@ -106,8 +106,8 @@ export const navigationTopics: TopicGroup[] = [
     title: 'Endeudamiento',
     description: 'Tasas pasivas, instrumentos y emisiones',
     items: [
-      { id: 'analisis-endeudamiento', label: 'Tasas Pasivas' },
       { id: 'deuda-por-fuente', label: 'Endeudamiento por Instrumento' },
+      { id: 'analisis-endeudamiento', label: 'Tasas Pasivas' },
       { id: 'perfil-amortizacion', label: 'Evolución y Proyecciones' },
     ],
   },

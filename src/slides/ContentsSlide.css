@@ -17,10 +17,12 @@
   align-items: center;
   gap: var(--space-4);
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .contents-slide__heading .fonplata-logo {
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 .contents-slide__title {

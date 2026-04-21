@@ -27,10 +27,6 @@ const METRIC_ROWS: MetricRow[] = [
     isTotal: true,
   },
   {
-    metric: 'Rend. Mensual',
-    values: ['0,20%', '0,34%', '0,56%', '0,26%', '0,23%', '0,67%', '0,44%', '0,46%', '0,63%', '0,44%', '0,37%', '0,55%', '0,27%', '0,27%', '-0,24%'],
-  },
-  {
     metric: 'Rend. YTD',
     values: ['1,00%', '1,08%', '1,13%', '1,96%', '3,06%', '4,64%', '1,06%', '2,61%', '4,56%', '5,22%', '1,24%', '2,49%', '3,62%', '4,72%', '0,57%'],
   },
@@ -98,14 +94,14 @@ function parseNumeric(v: string | number | null): number | null {
 }
 
 function metricIsNumeric(ri: number): boolean {
-  // rows: 0 AUM, 1 Rend. Mensual, 2 Rend. YTD, 3 Rend. Benchmark YTD,
-  // 4 SOFR, 5 Calificación (NOT numeric), 6/7/8 Duración
-  return ri !== 5
+  // rows: 0 AUM, 1 Rend. YTD, 2 Rend. Benchmark YTD, 3 SOFR,
+  // 4 Calificación (NOT numeric), 5/6/7 Duración
+  return ri !== 4
 }
 
 function metricUnit(ri: number): string {
   if (ri === 0) return 'USD MM'
-  if (ri >= 1 && ri <= 4) return '%'
+  if (ri >= 1 && ri <= 3) return '%'
   return ''
 }
 

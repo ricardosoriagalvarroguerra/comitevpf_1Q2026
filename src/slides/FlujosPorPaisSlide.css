@@ -267,3 +267,10 @@
     grid-template-rows: repeat(3, minmax(0, 1fr));
   }
 }
+
+@media (max-width: 640px) {
+  .flujos-slide__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, minmax(180px, 1fr));
+  }
+}

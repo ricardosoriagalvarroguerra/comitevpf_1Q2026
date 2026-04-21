@@ -88,7 +88,7 @@
 .rate-chart__svg {
   width: 100%;
   flex: 1;
-  min-height: 260px;
+  min-height: clamp(160px, 50vw, 260px);
   display: block;
 }
 

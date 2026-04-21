@@ -463,3 +463,30 @@
   font-weight: var(--font-medium);
   letter-spacing: 0.02em;
 }
+
+@media (max-width: 900px) {
+  .risk-capacity__year-labels,
+  .risk-capacity__donut-row,
+  .risk-capacity__bar-row {
+    grid-template-columns: 1fr;
+  }
+
+  .risk-capacity__donut-row,
+  .risk-capacity__bar-row {
+    gap: var(--space-3);
+  }
+
+  .risk-capacity__header .risk-capacity__legend {
+    position: static;
+    margin-top: var(--space-3);
+  }
+
+  .risk-capacity__info-btn {
+    left: auto;
+    right: var(--space-4);
+  }
+
+  .rating-grid__modal {
+    max-height: 92vh;
+  }
+}
