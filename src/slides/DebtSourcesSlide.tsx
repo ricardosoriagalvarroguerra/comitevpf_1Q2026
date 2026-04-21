@@ -4,11 +4,11 @@ import { Card } from '@/components/ui/Card'
 import './DebtSourcesSlide.css'
 
 const ifdColumns = [
-  { key: 'instrumento', label: 'Instrumento', align: 'left' as const },
-  { key: 'circulante', label: 'Circulante (USD MM)', align: 'center' as const },
-  { key: 'disponible', label: 'Disponible (USD MM)', align: 'center' as const },
-  { key: 'total', label: 'Total (USD MM)', align: 'center' as const },
-  { key: 'spread', label: 'Spread (pbs)', align: 'center' as const },
+  { key: 'instrumento', label: 'Instrumento', align: 'left' as const, className: 'debt-sources__col-inst' },
+  { key: 'circulante', label: 'Circ.', align: 'right' as const, className: 'debt-sources__col-num' },
+  { key: 'disponible', label: 'Disp.', align: 'right' as const, className: 'debt-sources__col-num' },
+  { key: 'total', label: 'Total', align: 'right' as const, className: 'debt-sources__col-num' },
+  { key: 'spread', label: 'Spread', align: 'right' as const, className: 'debt-sources__col-num' },
 ]
 
 const ifdRows = [
@@ -37,9 +37,9 @@ const ifdRows = [
 ]
 
 const mercadoColumns = [
-  { key: 'instrumento', label: 'Instrumento', align: 'left' as const },
-  { key: 'monto', label: 'Monto (USD MM)', align: 'center' as const },
-  { key: 'spread', label: 'Spread (pbs)', align: 'center' as const },
+  { key: 'instrumento', label: 'Instrumento', align: 'left' as const, className: 'debt-sources__col-inst' },
+  { key: 'monto', label: 'Monto', align: 'right' as const, className: 'debt-sources__col-num' },
+  { key: 'spread', label: 'Spread', align: 'right' as const, className: 'debt-sources__col-num' },
 ]
 
 const mercadoRows = [
@@ -120,12 +120,14 @@ export function DebtSourcesSlide({
           columns={ifdColumns}
           rows={ifdRows}
           className="debt-sources__table-scroll"
+          headerRight={<span className="debt-sources__unit">USD MM · pbs</span>}
         />
         <TableCard
           title="Mercado"
           columns={mercadoColumns}
           rows={mercadoRows}
           className="debt-sources__table-scroll"
+          headerRight={<span className="debt-sources__unit">USD MM · pbs</span>}
         />
       </div>
     </div>

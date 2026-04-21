@@ -102,15 +102,48 @@
 .debt-sources__tables--dual .table-card__body {
   flex: 1 1 auto;
   min-height: 0;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .debt-sources__tables .table-card .table-card__th,
 .debt-sources__tables .table-card .table-card__td {
-  padding: var(--space-1-5) var(--space-2);
-  font-size: var(--text-2xs);
+  padding: 3px var(--space-1-5);
+  font-size: 10.5px;
   line-height: var(--leading-snug);
   white-space: nowrap;
+}
+
+.debt-sources__tables .table-card .table-card__th {
+  font-size: 9px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* Instrumento column wraps; numeric columns stay tight */
+.debt-sources__tables .debt-sources__col-inst {
+  white-space: normal;
+  word-break: break-word;
+  min-width: 140px;
+  font-weight: var(--font-medium);
+}
+
+.debt-sources__tables .debt-sources__col-num {
+  width: 1%;
+  font-variant-numeric: tabular-nums;
+  padding-left: var(--space-1) !important;
+  padding-right: var(--space-2) !important;
+}
+
+/* Unit pill in table header */
+.debt-sources__unit {
+  font-size: 9px;
+  font-weight: var(--font-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: 2px 6px;
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-sm);
 }
 
 /* Highlight rows: operaciones contratadas en 2026 (red border) */
