@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import * as d3 from 'd3'
 import { TextCard } from '@/components/cards/TextCard'
@@ -111,10 +111,41 @@ interface SpreadChartProps {
 
 function SpreadChart({ rows, mode, fullscreen }: SpreadChartProps) {
   const [hover, setHover] = useState<number | null>(null)
+  const wrapRef = useRef<HTMLDivElement | null>(null)
+  const [size, setSize] = useState({ w: 1100, h: 720 })
 
-  const W = fullscreen ? 1600 : 1100
-  const H = fullscreen ? 820 : 720
-  const margin = { top: 32, right: 84, bottom: 56, left: 84 }
+  useEffect(() => {
+    if (!wrapRef.current) return
+    const el = wrapRef.current
+    let rafId: number | null = null
+    const update = () => {
+      const r = el.getBoundingClientRect()
+      if (r.width > 0 && r.height > 0) {
+        setSize((prev) =>
+          Math.abs(prev.w - r.width) < 0.5 && Math.abs(prev.h - r.height) < 0.5
+            ? prev
+            : { w: r.width, h: r.height },
+        )
+      }
+    }
+    update()
+    const obs = new ResizeObserver(() => {
+      if (rafId !== null) return
+      rafId = requestAnimationFrame(() => {
+        rafId = null
+        update()
+      })
+    })
+    obs.observe(el)
+    return () => {
+      obs.disconnect()
+      if (rafId !== null) cancelAnimationFrame(rafId)
+    }
+  }, [fullscreen])
+
+  const W = size.w
+  const H = size.h
+  const margin = { top: 32, right: 52, bottom: 56, left: 52 }
   const innerW = W - margin.left - margin.right
   const innerH = H - margin.top - margin.bottom
 
@@ -184,7 +215,7 @@ function SpreadChart({ rows, mode, fullscreen }: SpreadChartProps) {
   const hovered = hover !== null ? rows[hover] : null
 
   return (
-    <div className="spread-chart" onMouseLeave={() => setHover(null)}>
+    <div className="spread-chart" ref={wrapRef} onMouseLeave={() => setHover(null)}>
       <div className="spread-chart__panel" role="status" aria-live="polite">
         <span className="spread-chart__panel-period">
           {hovered ? hovered.period : 'Leyenda'}
@@ -225,7 +256,7 @@ function SpreadChart({ rows, mode, fullscreen }: SpreadChartProps) {
       <svg
         viewBox={`0 0 ${W} ${H}`}
         className="spread-chart__svg"
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="none"
       >
         <g transform={`translate(${margin.left},${margin.top})`}>
           {yLeftTicks.map((t) => (
