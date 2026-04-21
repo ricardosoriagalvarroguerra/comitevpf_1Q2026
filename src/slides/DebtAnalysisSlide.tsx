@@ -89,12 +89,6 @@ const SERIES_PONDERADO: SeriesDef[] = [
   { id: 'totalSpread', label: 'Total Spread', color: COLOR_TOTAL_LINE, unit: 'bps', shape: 'line' },
 ]
 
-const SERIES_MARGINAL: SeriesDef[] = [
-  { id: 'totalStock', label: 'Stock Total', color: COLOR_TOTAL_BAR, unit: 'MM', shape: 'bar' },
-  { id: 'ifdSpread', label: 'IFD Spread', color: COLOR_IFD_LINE, unit: 'bps', shape: 'line' },
-  { id: 'merSpread', label: 'Mercado Spread', color: COLOR_MER_LINE, unit: 'bps', shape: 'line' },
-]
-
 const nf1 = new Intl.NumberFormat('es-ES', {
   minimumFractionDigits: 1,
   maximumFractionDigits: 1,
