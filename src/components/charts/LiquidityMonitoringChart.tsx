@@ -195,7 +195,7 @@ export function LiquidityMonitoringChart({
               textAnchor="middle"
               className="liq-chart__axis-label"
             >
-              {d.date}
+              {d.date.replace('-', '')}
             </text>
           ))}
 

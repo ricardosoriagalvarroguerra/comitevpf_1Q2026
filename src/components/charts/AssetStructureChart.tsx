@@ -230,7 +230,7 @@ export function AssetStructureChart({ data }: AssetStructureChartProps) {
               textAnchor="middle"
               className="asset-struct__data-label"
             >
-              {d.ratio.toFixed(1)}%
+              {d.ratio.toFixed(1)}
             </text>
           ))}
 

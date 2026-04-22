@@ -165,7 +165,7 @@ function SlideRenderer() {
       eyebrow: 'Monitoreo de riesgos',
       title: 'Riesgo de Liquidez',
       cards: [
-        { id: 'ratio-liq', title: 'Monitoreo Liquidez (Política Financiera)' },
+        { id: 'ratio-liq', title: 'Monitoreo Liquidez - Política Financiera (M USD)' },
         { id: 'cobertura-liq', title: 'Disponibilidad de Recursos Líquidos - Moodys (%)' },
         { id: 'activos-liq', title: 'Cobertura de liquidez a 12 meses - S&P' },
         { id: 'reservas', title: 'Ratio de Estructura de Activos (%)' },

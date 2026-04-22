@@ -201,7 +201,7 @@ export function LiquidityCoverageChart({ data }: LiquidityCoverageChartProps) {
                 textAnchor="end"
                 className="liq-cov__axis-label"
               >
-                {t}%
+                {t}
               </text>
             </g>
           ))}
@@ -277,7 +277,7 @@ export function LiquidityCoverageChart({ data }: LiquidityCoverageChartProps) {
               textAnchor="middle"
               className="liq-cov__data-label"
             >
-              {d.fonplata}%
+              {d.fonplata}
             </text>
           ))}
 
