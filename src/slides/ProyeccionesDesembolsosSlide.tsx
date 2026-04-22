@@ -20,10 +20,6 @@ const nfMillions = new Intl.NumberFormat('es-ES', {
   minimumFractionDigits: 0,
   maximumFractionDigits: 2,
 })
-const nfMillions2 = new Intl.NumberFormat('es-ES', {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-})
 const nfMillions1 = new Intl.NumberFormat('es-ES', {
   minimumFractionDigits: 1,
   maximumFractionDigits: 1,
