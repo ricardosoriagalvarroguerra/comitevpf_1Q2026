@@ -170,10 +170,60 @@
 
 .amort-slide__bottom {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr) minmax(0, 1.25fr);
   gap: var(--space-3);
   flex: 1 1 0;
   min-height: 0;
+}
+
+.amort-slide__negotiation-card {
+  display: flex !important;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: 0;
+  height: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
+}
+
+.amort-slide__negotiation-header {
+  border-bottom: 1px solid var(--color-border-soft);
+  padding-bottom: var(--space-2);
+}
+
+.amort-slide__negotiation-title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+.amort-slide__negotiation-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: var(--leading-relaxed);
+}
+
+.amort-slide__negotiation-list li {
+  position: relative;
+  padding-left: var(--space-3);
+}
+
+.amort-slide__negotiation-list li::before {
+  content: '*';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-text);
+  font-weight: var(--font-bold);
 }
 
 .amort-slide > .amort-slide__chart-card {
