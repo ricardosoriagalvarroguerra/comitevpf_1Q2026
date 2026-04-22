@@ -24,6 +24,10 @@ const nfMillions2 = new Intl.NumberFormat('es-ES', {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
 })
+const nfMillions1 = new Intl.NumberFormat('es-ES', {
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1,
+})
 
 const GS_DATA: Record<string, number[]> = {
   Argentina: [0, 13846387, 16626139, 20000000, 0, 9400000, 0, 1600000, 6800000, 31369507, 5000000, 108815],
@@ -201,25 +205,48 @@ export function ProyeccionesDesembolsosSlide({
   const sns = buildRows(SNS_DATA, SNS_2027_Q1, SNS_RESTANTE_2027)
   const combinedTotal = gs.grandTotal + sns.grandTotal
 
+  // Total desde marzo 2026 (index 2) hasta marzo 2027 (3 meses 2027)
+  const sumRange = (data: Record<string, number[]>, from: number, to: number) =>
+    Object.values(data).reduce(
+      (s, arr) => s + arr.slice(from, to + 1).reduce((x, v) => x + v, 0),
+      0,
+    )
+  const marzo26AMarzo27 =
+    sumRange(GS_DATA, 2, 11) +
+    sumRange(SNS_DATA, 2, 11) +
+    sumRange(GS_2027_Q1, 0, 2) +
+    sumRange(SNS_2027_Q1, 0, 2)
+  const PORASIGNAR_2026 = 172_000_000
+
   return (
     <div className="debt-sources debt-sources--stacked">
       <div className="debt-sources__header">
         <div className="debt-sources__header-text">
           <TextCard eyebrow={eyebrow} title={title} description={description} />
         </div>
-        <Card padding="md" className="debt-sources__value-card">
-          <span className="debt-sources__value-label">Total Proyectado 2026</span>
-          <span className="debt-sources__value-number">
-            {nfMillions2.format(combinedTotal / 1_000_000)}
-          </span>
-          <span className="debt-sources__value-unit">USD MM</span>
-          <span className="debt-sources__value-detail">
-            Garantía Soberana <strong>{nfMillions2.format(gs.grandTotal / 1_000_000)}</strong>
-          </span>
-          <span className="debt-sources__value-detail">
-            Sin Garantía Soberana <strong>{nfMillions2.format(sns.grandTotal / 1_000_000)}</strong>
-          </span>
-        </Card>
+        <div className="debt-sources__value-group">
+          <Card padding="md" className="debt-sources__value-card">
+            <span className="debt-sources__value-label">Total 2026</span>
+            <span className="debt-sources__value-number">
+              {nfMillions1.format(combinedTotal / 1_000_000)}
+            </span>
+            <span className="debt-sources__value-unit">USD MM</span>
+          </Card>
+          <Card padding="md" className="debt-sources__value-card">
+            <span className="debt-sources__value-label">Mar 2026 – Mar 2027</span>
+            <span className="debt-sources__value-number">
+              {nfMillions1.format(marzo26AMarzo27 / 1_000_000)}
+            </span>
+            <span className="debt-sources__value-unit">USD MM</span>
+          </Card>
+          <Card padding="md" className="debt-sources__value-card">
+            <span className="debt-sources__value-label">Por asignar 2026</span>
+            <span className="debt-sources__value-number">
+              {nfMillions1.format(PORASIGNAR_2026 / 1_000_000)}
+            </span>
+            <span className="debt-sources__value-unit">USD MM</span>
+          </Card>
+        </div>
       </div>
       <div className="debt-sources__tables debt-sources__tables--stacked">
         <TableCard

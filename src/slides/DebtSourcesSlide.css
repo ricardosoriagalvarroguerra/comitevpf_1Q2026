@@ -31,11 +31,18 @@
   align-items: flex-end;
   justify-content: center;
   gap: 2px;
-  min-width: 220px;
+  min-width: 160px;
   padding: var(--space-3) var(--space-4) !important;
   background: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
   border: 1px solid color-mix(in srgb, var(--color-accent) 25%, var(--color-border-soft));
   box-shadow: none;
+}
+
+.debt-sources__value-group {
+  display: flex;
+  gap: var(--space-2);
+  flex: 0 0 auto;
+  align-items: stretch;
 }
 
 .debt-sources__value-label {
