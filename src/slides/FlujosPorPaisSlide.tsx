@@ -75,17 +75,47 @@ function usePaisExtent(pais: FlujoPais): [number, number] {
   }, [pais])
 }
 
+interface FlujoHoverInfo {
+  label: string
+  period: string
+  flujoNeto: number
+  rows: Array<{ id: string; label: string; value: number; color: string; sign: 1 | -1 }>
+}
+
 interface FlujoChartProps {
   pais: FlujoPais
   width: number
   height: number
   yDomain: [number, number]
   compact?: boolean
+  label?: string
+  onHoverChange?: (info: FlujoHoverInfo | null) => void
 }
 
-function FlujoChart({ pais, width, height, yDomain, compact = true }: FlujoChartProps) {
+function FlujoChart({ pais, width, height, yDomain, compact = true, label, onHoverChange }: FlujoChartProps) {
   const [hover, setHover] = useState<number | null>(null)
   const rows = useMemo(() => getFlujosByPais(pais), [pais])
+
+  useEffect(() => {
+    if (!onHoverChange) return
+    if (hover === null) {
+      onHoverChange(null)
+      return
+    }
+    const r = rows[hover]
+    onHoverChange({
+      label: label ?? String(pais),
+      period: r.anio,
+      flujoNeto: r.flujoNeto,
+      rows: STACK_SERIES.filter((s) => (r[s.id] as number) !== 0).map((s) => ({
+        id: String(s.id),
+        label: s.label,
+        value: r[s.id] as number,
+        color: s.color,
+        sign: s.sign,
+      })),
+    })
+  }, [hover, rows, label, pais, onHoverChange])
 
   const margin = compact
     ? { top: 12, right: 8, bottom: 28, left: 44 }
@@ -314,9 +344,10 @@ function FsIcon({ fullscreen }: { fullscreen: boolean }) {
 interface CountryChartCardProps {
   pais: FlujoPais
   label: string
+  onHoverChange?: (info: FlujoHoverInfo | null) => void
 }
 
-function CountryChartCard({ pais, label }: CountryChartCardProps) {
+function CountryChartCard({ pais, label, onHoverChange }: CountryChartCardProps) {
   const yDomain = usePaisExtent(pais)
   const [fullscreen, setFullscreen] = useState(false)
 
@@ -365,6 +396,8 @@ function CountryChartCard({ pais, label }: CountryChartCardProps) {
           height={height}
           yDomain={yDomain}
           compact={!fullscreen}
+          label={label}
+          onHoverChange={onHoverChange}
         />
       </div>
     </Card>
@@ -374,28 +407,96 @@ function CountryChartCard({ pais, label }: CountryChartCardProps) {
 }
 
 export function FlujosPorPaisSlide() {
+  const [hoverTip, setHoverTip] = useState<FlujoHoverInfo | null>(null)
+
   return (
     <div className="flujos-slide">
-      <TextCard
-        eyebrow="2 · CARTERA"
-        title="Flujo Neto por País"
-        description="USD Millones"
-      />
-      <div className="flujos-slide__legend">
-        {STACK_SERIES.map((s) => (
-          <span key={s.id} className="flujos-slide__legend-item">
-            <span className="flujos-slide__legend-swatch" style={{ background: s.color }} />
-            {s.label}
-          </span>
-        ))}
-        <span className="flujos-slide__legend-item">
-          <span className="flujos-slide__legend-line" style={{ background: COLOR_FLUJO_LINE }} />
-          Flujo Neto
-        </span>
+      <div className="flujos-slide__header">
+        <TextCard
+          eyebrow="2 · CARTERA"
+          title="Flujo Neto por País"
+          description="USD Millones"
+        />
+        <aside
+          className="flujos-slide__header-panel"
+          aria-label="Leyenda de categorías"
+        >
+          {hoverTip ? (
+            <>
+              <div className="flujos-slide__header-context">
+                {`${hoverTip.label} · ${hoverTip.period}`}
+              </div>
+              <div className="flujos-slide__header-grid">
+                {STACK_SERIES.map((s) => {
+                  const row = hoverTip.rows.find((r) => r.id === s.id)
+                  return (
+                    <div
+                      key={s.id}
+                      className="flujos-slide__header-item"
+                    >
+                      <span className="flujos-slide__header-item-label">
+                        <span
+                          className="flujos-slide__legend-swatch"
+                          style={{ background: s.color }}
+                        />
+                        {s.label}
+                      </span>
+                      <strong className="flujos-slide__header-value">
+                        {row
+                          ? `${s.sign < 0 ? '−' : ''}${nf1.format(row.value)}`
+                          : '—'}
+                      </strong>
+                    </div>
+                  )
+                })}
+                <div className="flujos-slide__header-item flujos-slide__header-item--total">
+                  <span className="flujos-slide__header-item-label">
+                    <span
+                      className="flujos-slide__legend-line"
+                      style={{ background: COLOR_FLUJO_LINE }}
+                    />
+                    Flujo Neto
+                  </span>
+                  <strong className="flujos-slide__header-value">
+                    {nf1.format(hoverTip.flujoNeto)}
+                  </strong>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="flujos-slide__header-grid">
+              {STACK_SERIES.map((s) => (
+                <div key={s.id} className="flujos-slide__header-item">
+                  <span className="flujos-slide__header-item-label">
+                    <span
+                      className="flujos-slide__legend-swatch"
+                      style={{ background: s.color }}
+                    />
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+              <div className="flujos-slide__header-item">
+                <span className="flujos-slide__header-item-label">
+                  <span
+                    className="flujos-slide__legend-line"
+                    style={{ background: COLOR_FLUJO_LINE }}
+                  />
+                  Flujo Neto
+                </span>
+              </div>
+            </div>
+          )}
+        </aside>
       </div>
       <div className="flujos-slide__grid">
         {FLUJO_PAISES.map((p) => (
-          <CountryChartCard key={p.id} pais={p.id} label={p.label} />
+          <CountryChartCard
+            key={p.id}
+            pais={p.id}
+            label={p.label}
+            onHoverChange={setHoverTip}
+          />
         ))}
       </div>
     </div>

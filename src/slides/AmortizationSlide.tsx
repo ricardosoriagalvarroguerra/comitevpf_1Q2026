@@ -340,14 +340,42 @@ const FLUJOS_DATA: IfdMercadoRow[] = [
 const COLOR_IFD = '#adb5bd'
 const COLOR_MERCADO = '#c1121f'
 
+interface AmortHoverInfo {
+  source: string
+  period: string
+  ifd: number
+  mercado: number
+  ifdProy: number
+  mercadoProy: number
+}
+
 interface IfdMercadoChartProps {
   data: IfdMercadoRow[]
   width: number
   height: number
+  label?: string
+  onHoverChange?: (info: AmortHoverInfo | null) => void
 }
 
-function IfdMercadoChart({ data, width, height }: IfdMercadoChartProps) {
+function IfdMercadoChart({ data, width, height, label, onHoverChange }: IfdMercadoChartProps) {
   const [hover, setHover] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (!onHoverChange) return
+    if (hover === null) {
+      onHoverChange(null)
+      return
+    }
+    const r = data[hover]
+    onHoverChange({
+      source: label ?? '',
+      period: r.anio,
+      ifd: r.ifd,
+      mercado: r.mercado,
+      ifdProy: r.ifdProy ?? 0,
+      mercadoProy: r.mercadoProy ?? 0,
+    })
+  }, [hover, data, label, onHoverChange])
 
   const margin = { top: 24, right: 60, bottom: 32, left: 56 }
   const innerW = width - margin.left - margin.right
@@ -589,7 +617,15 @@ function IfdMercadoChart({ data, width, height }: IfdMercadoChartProps) {
   )
 }
 
-function IfdMercadoCard({ title, data }: { title: string; data: IfdMercadoRow[] }) {
+function IfdMercadoCard({
+  title,
+  data,
+  onHoverChange,
+}: {
+  title: string
+  data: IfdMercadoRow[]
+  onHoverChange?: (info: AmortHoverInfo | null) => void
+}) {
   const [fullscreen, setFullscreen] = useState(false)
   useEffect(() => {
     if (!fullscreen) return
@@ -631,7 +667,13 @@ function IfdMercadoCard({ title, data }: { title: string; data: IfdMercadoRow[] 
         </button>
       </div>
       <div className="amort-slide__chart-body">
-        <IfdMercadoChart data={data} width={w} height={h} />
+        <IfdMercadoChart
+          data={data}
+          width={w}
+          height={h}
+          label={title}
+          onHoverChange={onHoverChange}
+        />
       </div>
     </Card>
   )
@@ -640,15 +682,120 @@ function IfdMercadoCard({ title, data }: { title: string; data: IfdMercadoRow[] 
 }
 
 export function AmortizationSlide() {
+  const [hoverTip, setHoverTip] = useState<AmortHoverInfo | null>(null)
+
+  const total = hoverTip
+    ? hoverTip.ifd + hoverTip.mercado + hoverTip.ifdProy + hoverTip.mercadoProy
+    : 0
+
   return (
     <div className="amort-slide">
-      <TextCard
-        eyebrow="4 · ENDEUDAMIENTO"
-        title="Endeudamiento: Evolución y Proyecciones"
-      />
+      <div className="amort-slide__header">
+        <TextCard
+          eyebrow="4 · ENDEUDAMIENTO"
+          title="Endeudamiento: Evolución y Proyecciones"
+        />
+        <aside
+          className="amort-slide__header-panel"
+          aria-label="Leyenda"
+        >
+          {hoverTip ? (
+            <>
+              <div className="amort-slide__header-context">
+                {`${hoverTip.source} · ${hoverTip.period}`}
+              </div>
+              <div className="amort-slide__header-grid">
+                <div className="amort-slide__header-item">
+                  <span className="amort-slide__header-item-label">
+                    <span
+                      className="amort-slide__legend-swatch"
+                      style={{ background: COLOR_IFD }}
+                    />
+                    IFD
+                  </span>
+                  <strong>{nf2.format(hoverTip.ifd)} MM</strong>
+                </div>
+                <div className="amort-slide__header-item">
+                  <span className="amort-slide__header-item-label">
+                    <span
+                      className="amort-slide__legend-swatch"
+                      style={{ background: COLOR_MERCADO }}
+                    />
+                    Mercado
+                  </span>
+                  <strong>{nf2.format(hoverTip.mercado)} MM</strong>
+                </div>
+                <div className="amort-slide__header-item">
+                  <span className="amort-slide__header-item-label">
+                    <span
+                      className="amort-slide__legend-swatch amort-slide__legend-swatch--proy"
+                      style={{ background: COLOR_IFD }}
+                    />
+                    IFD proy.
+                  </span>
+                  <strong>{nf2.format(hoverTip.ifdProy)} MM</strong>
+                </div>
+                <div className="amort-slide__header-item">
+                  <span className="amort-slide__header-item-label">
+                    <span
+                      className="amort-slide__legend-swatch amort-slide__legend-swatch--proy"
+                      style={{ background: COLOR_MERCADO }}
+                    />
+                    Mercado proy.
+                  </span>
+                  <strong>{nf2.format(hoverTip.mercadoProy)} MM</strong>
+                </div>
+                <div className="amort-slide__header-item amort-slide__header-item--total">
+                  <span className="amort-slide__header-item-label">Total</span>
+                  <strong>{nf2.format(total)} MM</strong>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="amort-slide__header-grid">
+              <div className="amort-slide__header-item">
+                <span className="amort-slide__header-item-label">
+                  <span
+                    className="amort-slide__legend-swatch"
+                    style={{ background: COLOR_IFD }}
+                  />
+                  IFD
+                </span>
+              </div>
+              <div className="amort-slide__header-item">
+                <span className="amort-slide__header-item-label">
+                  <span
+                    className="amort-slide__legend-swatch"
+                    style={{ background: COLOR_MERCADO }}
+                  />
+                  Mercado
+                </span>
+              </div>
+              <div className="amort-slide__header-item">
+                <span className="amort-slide__header-item-label">
+                  <span
+                    className="amort-slide__legend-swatch amort-slide__legend-swatch--proy"
+                    style={{ background: COLOR_IFD }}
+                  />
+                  IFD proy.
+                </span>
+              </div>
+              <div className="amort-slide__header-item">
+                <span className="amort-slide__header-item-label">
+                  <span
+                    className="amort-slide__legend-swatch amort-slide__legend-swatch--proy"
+                    style={{ background: COLOR_MERCADO }}
+                  />
+                  Mercado proy.
+                </span>
+              </div>
+            </div>
+          )}
+        </aside>
+      </div>
       <PerfilCard />
       <div className="amort-slide__bottom">
-        <IfdMercadoCard title="Flujos" data={FLUJOS_DATA} />
+        <IfdMercadoCard title="Flujos" data={FLUJOS_DATA} onHoverChange={setHoverTip} />
         <Card padding="md" className="amort-slide__negotiation-card">
           <header className="amort-slide__negotiation-header">
             <span className="amort-slide__negotiation-title">
@@ -661,7 +808,7 @@ export function AmortizationSlide() {
             <li>BID - CCLIP Fase II por USD 100 millones (2026 Q3)</li>
           </ul>
         </Card>
-        <IfdMercadoCard title="Stock" data={STOCK_DATA} />
+        <IfdMercadoCard title="Stock" data={STOCK_DATA} onHoverChange={setHoverTip} />
       </div>
     </div>
   )
