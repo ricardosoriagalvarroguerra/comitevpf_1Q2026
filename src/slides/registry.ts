@@ -20,6 +20,9 @@ import { FocemPortfolioSlide } from './FocemPortfolioSlide'
 import { TextTableSlide } from './TextTableSlide'
 import { LineCardsSlide } from './LineCardsSlide'
 import { LiquidityDashboardSlide } from './LiquidityDashboardSlide'
+import { CambiosActivosPasivosSlide } from './CambiosActivosPasivosSlide'
+import { EstadoResultadosSlide } from './EstadoResultadosSlide'
+import { GeneracionIngresosSlide } from './GeneracionIngresosSlide'
 import { CapitalAdequacySlide } from './CapitalAdequacySlide'
 import { DualChartsSlide } from './DualChartsSlide'
 import { DebtAuthorizationSlide } from './DebtAuthorizationSlide'
@@ -56,4 +59,7 @@ export const slideRegistry: Record<string, ComponentType<any>> = {
   'prevision': PrevisionSlide,
   'placeholder': PlaceholderSlide,
   'flujos-netos': FlujosPorPaisSlide,
+  'cambios-activos-pasivos': CambiosActivosPasivosSlide,
+  'estado-resultados': EstadoResultadosSlide,
+  'generacion-ingresos': GeneracionIngresosSlide,
 }

@@ -30,7 +30,7 @@ const PERIODS: PeriodDef[] = [
   { id: 'Q1-27', label: '1Q27 (Proy.)', year: 2027, quarter: 1 },
 ]
 
-const BUCKETS: Bucket[] = ['GI1', 'GI2', 'Superior', 'Intermedia', 'Básica']
+const BUCKETS: Bucket[] = ['Básica', 'Intermedia', 'Superior', 'GI2', 'GI1']
 
 const BUCKET_BY_COUNTRY: Record<CarteraCountry, Bucket> = {
   ARG: 'Básica',

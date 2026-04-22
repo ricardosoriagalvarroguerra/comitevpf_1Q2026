@@ -116,6 +116,7 @@ function SlideRenderer() {
       topics: navigationTopics,
     },
     // Section titles
+    'section-situacion-financiera': { title: 'Situación Financiera' },
     'section-cartera': { title: 'Cartera' },
     'section-monitoreo': { title: 'Monitoreo de Riesgos y Política Financiera' },
     'section-inversiones': { title: 'Inversiones' },
