@@ -462,8 +462,8 @@ export function CountryExposureSlide({
             valueLabel="Por cobrar"
             disponibleLabel="Otros activos"
             getUsado={(p, c) => p.porCobrarPorPais[c]}
-            getTopSegment={(p, c) => Math.max(0, p.activosTotales - p.porCobrarPorPais[c])}
-            getTopLabel={(p) => p.activosTotales}
+            getTopSegment={(p, c) => Math.max(0, limiteActivos(p, c) - p.porCobrarPorPais[c])}
+            getTopLabel={limiteActivos}
           />
         </Card>
       </div>
