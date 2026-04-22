@@ -11,6 +11,7 @@ interface RateChart {
   id: string
   label: string
   unit?: string
+  description?: string
   data?: { labels: string[]; series: RateSeries[] }
 }
 
@@ -25,6 +26,7 @@ export function RateAnalysisSlide({ eyebrow, title, description, charts }: RateA
   const [activeChart, setActiveChart] = useState(0)
   const current = charts[activeChart]
   const activeTitle = current?.label ?? title
+  const activeDescription = current?.description ?? description
 
   return (
     <div className="rate-analysis">
@@ -32,7 +34,7 @@ export function RateAnalysisSlide({ eyebrow, title, description, charts }: RateA
         <TextCard
           eyebrow={eyebrow}
           title={activeTitle}
-          description={description}
+          description={activeDescription}
         />
       </div>
       <div className="rate-analysis__gallery">

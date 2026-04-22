@@ -12,13 +12,19 @@
   }
 
   .rate-analysis__text {
-    flex: 0 0 280px;
+    flex: 0 0 320px;
   }
 
   .rate-analysis__gallery {
     flex: 1;
     min-width: 0;
   }
+}
+
+.rate-analysis__text .text-card__description {
+  white-space: pre-line;
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
 }
 
 .rate-analysis__card {
