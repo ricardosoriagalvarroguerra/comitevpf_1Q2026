@@ -239,27 +239,29 @@ export function LiquidityMonitoringChart({
             strokeLinejoin="round"
           />
 
-          {/* Data labels */}
-          {data.map((d) => (
-            <g key={`lbl-${d.date}`}>
-              <text
-                x={x(d.date) ?? 0}
-                y={y(d.liquidez) - 8}
-                textAnchor="middle"
-                className="liq-chart__data-label liq-chart__data-label--liq"
-              >
-                {fmt(d.liquidez)}
-              </text>
-              <text
-                x={x(d.date) ?? 0}
-                y={y(d.minimaRequerida) + 14}
-                textAnchor="middle"
-                className="liq-chart__data-label liq-chart__data-label--min"
-              >
-                {fmt(d.minimaRequerida)}
-              </text>
-            </g>
-          ))}
+          {/* Data labels — solo diciembre de cada año */}
+          {data
+            .filter((d) => /^dic-/i.test(d.date))
+            .map((d) => (
+              <g key={`lbl-${d.date}`}>
+                <text
+                  x={x(d.date) ?? 0}
+                  y={y(d.liquidez) - 8}
+                  textAnchor="middle"
+                  className="liq-chart__data-label liq-chart__data-label--liq"
+                >
+                  {fmt(d.liquidez)}
+                </text>
+                <text
+                  x={x(d.date) ?? 0}
+                  y={y(d.minimaRequerida) + 14}
+                  textAnchor="middle"
+                  className="liq-chart__data-label liq-chart__data-label--min"
+                >
+                  {fmt(d.minimaRequerida)}
+                </text>
+              </g>
+            ))}
 
           {/* Dots */}
           {data.map((d, i) => (
