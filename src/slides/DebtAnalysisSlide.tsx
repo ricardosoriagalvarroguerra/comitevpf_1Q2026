@@ -517,7 +517,7 @@ export function DebtAnalysisSlide() {
       className={`debt-analysis__card ${fullscreen ? 'debt-analysis__card--fullscreen' : ''}`}
     >
       <div className="debt-analysis__controls">
-        <span className="debt-analysis__chart-title">Spread s/SOFR</span>
+        <span className="debt-analysis__chart-title">Stock en M de USD y Spread s/SOFR en puntos básicos</span>
         <SegmentedControl
           options={[
             { value: 'ponderado', label: 'Prom. ponderado' },
