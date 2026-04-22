@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { ChartPlaceholder, type ChartType, type ChartSeries } from '@/components/cards/ChartPlaceholder'
 import { Card } from '@/components/ui/Card'
 import { TextCard } from '@/components/cards/TextCard'
@@ -99,17 +101,78 @@ export function LiquidityDashboardSlide({
   columns = 2,
 }: LiquidityDashboardSlideProps) {
   const [first, second, third, fourth, ...rest] = cards
+  const [showInfo, setShowInfo] = useState(false)
+
+  useEffect(() => {
+    if (!showInfo) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setShowInfo(false)
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [showInfo])
 
   return (
     <div className="line-cards-slide">
-      <div className="line-cards-slide__header">
+      <div className="line-cards-slide__header liq-dashboard__header">
         <TextCard
           eyebrow={eyebrow}
           title={title}
           description={description}
           variant="default"
         />
+        <button
+          type="button"
+          className="liq-dashboard__info-btn"
+          onClick={() => setShowInfo(true)}
+          aria-label="Información sobre las proyecciones"
+          title="Supuestos de proyecciones"
+        >
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="8" cy="8" r="6.5" />
+            <path d="M8 11V7.5" />
+            <circle cx="8" cy="5" r="0.6" fill="currentColor" />
+          </svg>
+        </button>
       </div>
+      {showInfo &&
+        createPortal(
+          <div
+            className="liq-dashboard__info-overlay"
+            onClick={() => setShowInfo(false)}
+            role="dialog"
+            aria-modal="true"
+          >
+            <div
+              className="liq-dashboard__info-modal"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="liq-dashboard__info-header">
+                <span className="liq-dashboard__info-eyebrow">Supuestos</span>
+                <button
+                  type="button"
+                  className="liq-dashboard__info-close"
+                  onClick={() => setShowInfo(false)}
+                  aria-label="Cerrar"
+                  title="Cerrar"
+                >
+                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4l8 8M12 4l-8 8" />
+                  </svg>
+                </button>
+              </div>
+              <p className="liq-dashboard__info-text">
+                Las proyecciones de liquidez para 2026 y 2027 consideran como
+                supuesto de desembolsos las proyecciones de la Vicepresidencia
+                de Operaciones:{' '}
+                <strong>USD 543M en 2026</strong>,{' '}
+                <strong>USD 658M en 2027</strong> y{' '}
+                <strong>USD 766M en 2028</strong>.
+              </p>
+            </div>
+          </div>,
+          document.body,
+        )}
       <div
         className="line-cards-slide__grid"
         style={{ '--card-columns': columns } as React.CSSProperties}

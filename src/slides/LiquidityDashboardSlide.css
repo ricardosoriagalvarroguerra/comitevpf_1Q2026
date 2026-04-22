@@ -25,3 +25,103 @@
   display: flex;
   flex-direction: column;
 }
+
+.liq-dashboard__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.liq-dashboard__header > .text-card {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.liq-dashboard__info-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background var(--duration-fast) var(--ease-default),
+    color var(--duration-fast) var(--ease-default),
+    border-color var(--duration-fast) var(--ease-default);
+}
+
+.liq-dashboard__info-btn:hover {
+  background: var(--color-surface-alt);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.liq-dashboard__info-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+}
+
+.liq-dashboard__info-modal {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-card, 10px);
+  box-shadow: var(--shadow-card);
+  max-width: 520px;
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.liq-dashboard__info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.liq-dashboard__info-eyebrow {
+  font-size: 10px;
+  font-weight: var(--font-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.liq-dashboard__info-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.liq-dashboard__info-close:hover {
+  background: var(--color-surface-alt);
+  color: var(--color-text);
+  border-color: var(--color-border-soft);
+}
+
+.liq-dashboard__info-text {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+  margin: 0;
+}

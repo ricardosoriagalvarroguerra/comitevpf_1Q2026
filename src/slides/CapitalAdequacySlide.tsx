@@ -15,9 +15,9 @@ const RAC_SP_DATA: RacPoint[] = [
   { year: 2022, rac: 21.0 },
   { year: 2023, rac: 24.1 },
   { year: 2024, rac: 21.6 },
-  { year: 2025, rac: 38.3 },
-  { year: 2026, rac: 35.8, projected: true },
-  { year: 2027, rac: 32.2, projected: true },
+  { year: 2025, rac: 38.2 },
+  { year: 2026, rac: 36.2, projected: true },
+  { year: 2027, rac: 34.5, projected: true },
 ]
 
 const CAPITAL_ADEQUACY_DATA: CapitalAdequacyPoint[] = [
@@ -26,9 +26,10 @@ const CAPITAL_ADEQUACY_DATA: CapitalAdequacyPoint[] = [
   { period: '12/22', ratio: 53.14, activosAjustados: 2500.855, patrimonio: 1328.891 },
   { period: '12/23', ratio: 50.76, activosAjustados: 3052.712, patrimonio: 1549.550 },
   { period: '12/24', ratio: 47.43, activosAjustados: 3690.107, patrimonio: 1750.171 },
-  { period: '12/25', ratio: 51.05, activosAjustados: 3628.436, patrimonio: 1852.300 },
-  { period: '12/26', ratio: 46.68, activosAjustados: 4173.473, patrimonio: 1947.974, projected: true },
-  { period: '12/27', ratio: 46.07, activosAjustados: 4632.595, patrimonio: 2134.268, projected: true },
+  { period: '12/25', ratio: 51.0, activosAjustados: 3628.435, patrimonio: 1852.300 },
+  { period: '03/26', ratio: 51.9, activosAjustados: 3607.276, patrimonio: 1871.128 },
+  { period: '12/26 (e)', ratio: 47.2, activosAjustados: 4138.182, patrimonio: 1951.958, projected: true },
+  { period: '12/27 (e)', ratio: 45.8, activosAjustados: 4659.484, patrimonio: 2136.282, projected: true },
 ]
 
 interface CapitalAdequacySlideProps {
