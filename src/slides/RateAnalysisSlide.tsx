@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { TextCard } from '@/components/cards/TextCard'
 import {
   RateStackedBarChart,
@@ -11,14 +11,14 @@ interface RateChart {
   id: string
   label: string
   unit?: string
-  description?: string
+  description?: ReactNode
   data?: { labels: string[]; series: RateSeries[] }
 }
 
 interface RateAnalysisSlideProps {
   eyebrow: string
   title: string
-  description?: string
+  description?: ReactNode
   charts: RateChart[]
 }
 

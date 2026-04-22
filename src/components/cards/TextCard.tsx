@@ -5,7 +5,7 @@ import './TextCard.css'
 interface TextCardProps {
   eyebrow?: string
   title?: string
-  description?: string
+  description?: ReactNode
   body?: string
   highlights?: string[]
   callout?: { title: string; body: string }

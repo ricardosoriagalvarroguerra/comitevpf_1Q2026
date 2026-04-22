@@ -46,6 +46,36 @@ const nsobSofr = [
   3.72, 3.73, 3.67,
 ]
 
+const sovereignRateDescription = (
+  <>
+    <strong>Base SOFR:</strong> Continúa la tendencia decreciente iniciada en septiembre de 2024,
+    aunque a un ritmo más moderado. La tasa pasó de 3.78% al cierre de 2025 a 3.69% en marzo
+    de 2026, mostrando señales de estabilización tras la fuerte caída observada en el último
+    trimestre de 2025.
+    <br />
+    <br />
+    <strong>Margen neto:</strong> Se mantiene la tendencia decreciente sostenida desde inicios de
+    2024, con una reducción adicional de 3 pbs en el trimestre (de 2.38% a 2.35%).
+    <br />
+    <br />
+    <strong>FOCOM:</strong> Persiste la tendencia creciente de los últimos dos años. La
+    compensación de tasa alcanzó 42 bps en marzo de 2026, consolidando el incremento acumulado
+    desde los 27 bps de febrero de 2024.
+  </>
+)
+
+const nonSovereignRateDescription = (
+  <>
+    <strong>Base SOFR:</strong> Refleja el mismo comportamiento que el Riesgo Soberano, con una
+    caída desde 3.79% en diciembre de 2025 hasta 3.67% en marzo de 2026, en línea con la
+    trayectoria descendente de la curva desde septiembre de 2024.
+    <br />
+    <br />
+    <strong>Margen neto:</strong> Se estabiliza en torno a 3.25%–3.26%, consolidando el nivel
+    alcanzado tras el incremento en escalón registrado a inicios de 2025.
+  </>
+)
+
 // ── FONPLATA Investment data ──
 const fonplataDonut = [
   { id: 'bonos', label: 'Bonos', value: 71, color: 'var(--color-series-1)' },
@@ -175,8 +205,7 @@ function SlideRenderer() {
           id: 'soberana',
           label: 'Riesgo soberano',
           unit: '%',
-          description:
-            'Base SOFR: Continúa la tendencia decreciente iniciada en septiembre de 2024, aunque a un ritmo más moderado. La tasa pasó de 3.78% al cierre de 2025 a 3.69% en marzo de 2026, mostrando señales de estabilización tras la fuerte caída observada en el último trimestre de 2025.\n\nMargen neto: Se mantiene la tendencia decreciente sostenida desde inicios de 2024, con una reducción adicional de 3 pbs en el trimestre (de 2.38% a 2.35%).\n\nFOCOM: Persiste la tendencia creciente de los últimos dos años. La compensación de tasa alcanzó 42 pbs en marzo de 2026, consolidando el incremento acumulado desde los 27 pbs de febrero de 2024.',
+          description: sovereignRateDescription,
           data: {
             labels: tasasLabels,
             series: [
@@ -190,8 +219,7 @@ function SlideRenderer() {
           id: 'no-soberana',
           label: 'Riesgo no soberano',
           unit: '%',
-          description:
-            'Base SOFR: Refleja el mismo comportamiento que el Riesgo Soberano, con una caída desde 3.79% en diciembre de 2025 hasta 3.67% en marzo de 2026, en línea con la trayectoria descendente de la curva desde septiembre de 2024.\n\nMargen neto: Se estabiliza en torno a 3.25%–3.26%, consolidando el nivel alcanzado tras el incremento en escalón registrado a inicios de 2025. La leve variación del trimestre (+1 pb) es consistente con el perfil crediticio de la cartera y no responde a cambios en la estructura de tasas.',
+          description: nonSovereignRateDescription,
           data: {
             labels: tasasLabels,
             series: [
