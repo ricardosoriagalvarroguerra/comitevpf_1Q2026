@@ -47,7 +47,7 @@ export const FLUJOS_DATA: FlujoRow[] = [
   { pais: 'ARG', anio: '2023', desembolsos: 10.418, amortizacion: 44.263, intereses: 36.503, comisiones: 1.330, aporteVoluntario: 0, compensacionReservaCredito: 0, servicioPagoCuenta: 0, mora: 0, flujoNeto: -71.678 },
   { pais: 'ARG', anio: '2024', desembolsos: 250.000, amortizacion: 67.617, intereses: 39.469, comisiones: 2.591, aporteVoluntario: 0, compensacionReservaCredito: 0, servicioPagoCuenta: 0, mora: 0, flujoNeto: 140.322 },
   { pais: 'ARG', anio: '2025', desembolsos: 21.594, amortizacion: 64.159, intereses: 46.554, comisiones: 1.113, aporteVoluntario: 0, compensacionReservaCredito: 0, servicioPagoCuenta: 0, mora: 0, flujoNeto: -90.232 },
-  { pais: 'ARG', anio: '1Q-2026', desembolsos: 30.473, amortizacion: 32.173, intereses: 16.620, comisiones: 0.167, aporteVoluntario: 0, compensacionReservaCredito: 0, servicioPagoCuenta: 0, mora: 0, flujoNeto: -18.487 },
+  { pais: 'ARG', anio: '1Q-2026', desembolsos: 18.834, amortizacion: 20.534, intereses: 16.620, comisiones: 0.167, aporteVoluntario: 0, compensacionReservaCredito: 0, servicioPagoCuenta: 0, mora: 0, flujoNeto: -18.487 },
 
   // ── BOLIVIA ──
   { pais: 'BOL', anio: '2015', desembolsos: 43.104, amortizacion: 6.239, intereses: 1.774, comisiones: 1.459, aporteVoluntario: 0, compensacionReservaCredito: 0, servicioPagoCuenta: 0, mora: 0, flujoNeto: 33.632 },
@@ -117,7 +117,7 @@ export const FLUJOS_DATA: FlujoRow[] = [
   { pais: 'GENERAL', anio: '2023', desembolsos: 291.884, amortizacion: 140.842, intereses: 122.154, comisiones: 6.327, aporteVoluntario: 0, compensacionReservaCredito: 0, servicioPagoCuenta: 0, mora: 0, flujoNeto: 22.560 },
   { pais: 'GENERAL', anio: '2024', desembolsos: 736.972, amortizacion: 232.163, intereses: 160.694, comisiones: 11.176, aporteVoluntario: 0, compensacionReservaCredito: 0, servicioPagoCuenta: 0, mora: 0, flujoNeto: 332.939 },
   { pais: 'GENERAL', anio: '2025', desembolsos: 434.434, amortizacion: 222.280, intereses: 178.393, comisiones: 6.920, aporteVoluntario: 0, compensacionReservaCredito: 0, servicioPagoCuenta: 0, mora: 0.018, flujoNeto: 26.822 },
-  { pais: 'GENERAL', anio: '1Q-2026', desembolsos: 116.395, amortizacion: 85.090, intereses: 60.253, comisiones: 0.968, aporteVoluntario: 0, compensacionReservaCredito: 0, servicioPagoCuenta: 0, mora: 0.018, flujoNeto: -29.934 },
+  { pais: 'GENERAL', anio: '1Q-2026', desembolsos: 104.756, amortizacion: 73.451, intereses: 60.253, comisiones: 0.968, aporteVoluntario: 0, compensacionReservaCredito: 0, servicioPagoCuenta: 0, mora: 0.018, flujoNeto: -29.934 },
 ]
 
 export function getFlujosByPais(pais: FlujoPais): FlujoRow[] {
