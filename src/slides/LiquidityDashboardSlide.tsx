@@ -9,6 +9,10 @@ import {
   LiquidityCoverageChart,
   type CoveragePoint,
 } from '@/components/charts/LiquidityCoverageChart'
+import {
+  LiquidityCoverageSpChart,
+  type SpCoveragePoint,
+} from '@/components/charts/LiquidityCoverageSpChart'
 import './LineCardsSlide.css'
 import './LiquidityDashboardSlide.css'
 
@@ -37,6 +41,15 @@ const COVERAGE_DATA: CoveragePoint[] = [
   { year: 2026, fonplata: 152 },
 ]
 
+const SP_COVERAGE_DATA: SpCoveragePoint[] = [
+  { year: 2021, fonplata: 1.5 },
+  { year: 2022, fonplata: 1.0 },
+  { year: 2023, fonplata: 1.0 },
+  { year: 2024, fonplata: 1.3 },
+  { year: 2025, fonplata: 1.6 },
+  { year: 2026, fonplata: 1.52 },
+]
+
 const LIQUIDITY_DATA: LiquidityPoint[] = [
   { date: '31/12/25', minimaRequerida: 726, liquidez: 1367 },
   { date: '31/1/26', minimaRequerida: 781, liquidez: 1396 },
@@ -60,7 +73,7 @@ export function LiquidityDashboardSlide({
   cards,
   columns = 2,
 }: LiquidityDashboardSlideProps) {
-  const [first, second, ...rest] = cards
+  const [first, second, third, ...rest] = cards
 
   return (
     <div className="line-cards-slide">
@@ -93,6 +106,16 @@ export function LiquidityDashboardSlide({
             </header>
             <div className="liq-dashboard__card-body">
               <LiquidityCoverageChart data={COVERAGE_DATA} />
+            </div>
+          </Card>
+        )}
+        {third && (
+          <Card padding="md" className="liq-dashboard__card">
+            <header className="liq-dashboard__card-header">
+              <span className="liq-dashboard__card-title">{third.title}</span>
+            </header>
+            <div className="liq-dashboard__card-body">
+              <LiquidityCoverageSpChart data={SP_COVERAGE_DATA} />
             </div>
           </Card>
         )}

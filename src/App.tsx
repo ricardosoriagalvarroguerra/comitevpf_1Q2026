@@ -174,7 +174,7 @@ function SlideRenderer() {
       cards: [
         { id: 'ratio-liq', title: 'Monitoreo Liquidez (Política Financiera)' },
         { id: 'cobertura-liq', title: 'Disponibilidad de Recursos Líquidos (Moodys)' },
-        { id: 'activos-liq', title: 'Activos Liquidos' },
+        { id: 'activos-liq', title: 'Cobertura de liquidez a 12 meses (S&P)' },
         { id: 'reservas', title: 'Reservas Operativas' },
       ],
       columns: 2,
