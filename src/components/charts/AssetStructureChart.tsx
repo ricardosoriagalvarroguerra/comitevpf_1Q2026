@@ -6,6 +6,7 @@ import './AssetStructureChart.css'
 interface AssetPoint {
   year: number
   ratio: number
+  projected?: boolean
 }
 
 interface AssetStructureChartProps {
@@ -182,15 +183,43 @@ export function AssetStructureChart({ data }: AssetStructureChartProps) {
             />
           )}
 
-          {/* Line */}
-          <path
-            d={line(data) ?? ''}
-            fill="none"
-            stroke={LINE_COLOR}
-            strokeWidth={2.4}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+          {/* Line — split historical / projected */}
+          {(() => {
+            const firstProjIdx = data.findIndex((d) => d.projected)
+            const historicalPts =
+              firstProjIdx === -1 ? data : data.slice(0, firstProjIdx)
+            const projectedPts =
+              firstProjIdx === -1
+                ? []
+                : firstProjIdx > 0
+                  ? data.slice(firstProjIdx - 1)
+                  : data.slice(firstProjIdx)
+            return (
+              <>
+                {historicalPts.length > 1 && (
+                  <path
+                    d={line(historicalPts) ?? ''}
+                    fill="none"
+                    stroke={LINE_COLOR}
+                    strokeWidth={2.4}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                )}
+                {projectedPts.length > 1 && (
+                  <path
+                    d={line(projectedPts) ?? ''}
+                    fill="none"
+                    stroke={LINE_COLOR}
+                    strokeWidth={2.4}
+                    strokeDasharray="5 4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                )}
+              </>
+            )
+          })()}
 
           {/* Data labels */}
           {data.map((d) => (
