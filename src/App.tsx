@@ -171,9 +171,8 @@ function SlideRenderer() {
     'tablero-liquidez-4-cards': {
       eyebrow: 'Monitoreo de riesgos',
       title: 'Riesgo de Liquidez',
-      description: 'Indicadores clave de liquidez institucional.',
       cards: [
-        { id: 'ratio-liq', title: 'Ratio de Liquidez' },
+        { id: 'ratio-liq', title: 'Monitoreo Liquidez (Política Financiera)' },
         { id: 'cobertura-liq', title: 'Cobertura de Liquidez' },
         { id: 'activos-liq', title: 'Activos Liquidos' },
         { id: 'reservas', title: 'Reservas Operativas' },

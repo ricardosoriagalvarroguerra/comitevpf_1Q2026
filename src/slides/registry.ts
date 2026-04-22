@@ -19,6 +19,7 @@ import { FonplataInvestmentSlide } from './FonplataInvestmentSlide'
 import { FocemPortfolioSlide } from './FocemPortfolioSlide'
 import { TextTableSlide } from './TextTableSlide'
 import { LineCardsSlide } from './LineCardsSlide'
+import { LiquidityDashboardSlide } from './LiquidityDashboardSlide'
 import { CapitalAdequacySlide } from './CapitalAdequacySlide'
 import { DualChartsSlide } from './DualChartsSlide'
 import { DebtAuthorizationSlide } from './DebtAuthorizationSlide'
@@ -48,7 +49,7 @@ export const slideRegistry: Record<string, ComponentType<any>> = {
   'line-cards': LineCardsSlide,
   'line-cards-aprobaciones': ApprovalsByCountrySlide,
   'line-cards-riesgo': LineCardsSlide,
-  'line-cards-liquidez': LineCardsSlide,
+  'line-cards-liquidez': LiquidityDashboardSlide,
   'capital-adequacy': CapitalAdequacySlide,
   'dual-charts': DualChartsSlide,
   'debt-authorization': DebtAuthorizationSlide,
