@@ -273,7 +273,9 @@
 
 /* ── Ejecutado / Proyectado differentiator ── */
 .debt-sources__tables--stacked .month-cell--ejecutado {
-  background: color-mix(in srgb, var(--color-accent) 7%, transparent);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-style: normal;
 }
 
 .debt-sources__tables--stacked .month-cell--proyectado {

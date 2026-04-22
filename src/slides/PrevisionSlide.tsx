@@ -103,7 +103,6 @@ export function PrevisionSlide() {
 
       <Card padding="md" className="prevision-slide__chart-card">
         <div className="prevision-slide__chart-header">
-          <span className="prevision-slide__chart-eyebrow">Evolución trimestral</span>
           <h3 className="prevision-slide__chart-title">Ratio Previsión / Cartera por cobrar</h3>
           <span className="prevision-slide__chart-unit">%</span>
         </div>
