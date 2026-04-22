@@ -62,7 +62,7 @@ export function CapitalAdequacySlide({
         </div>
         <div className="capital-adequacy__policy">
           <Card padding="md" className="capital-adequacy__policy-card">
-            <span className="capital-adequacy__policy-label">Política financiera</span>
+            <span className="capital-adequacy__policy-label">Adecuación de capital</span>
             <p className="capital-adequacy__policy-text">{description}</p>
             {policyHighlights && (
               <ul className="capital-adequacy__policy-list">
@@ -87,7 +87,7 @@ export function CapitalAdequacySlide({
         </div>
         <div className="capital-adequacy__detail-text">
           <Card padding="md" className="capital-adequacy__detail-card">
-            <span className="capital-adequacy__detail-label">Detalle</span>
+            <span className="capital-adequacy__detail-label">Evolución del RAC</span>
             <div className="capital-adequacy__detail-desc">
               {detailDescription ?? 'Niveles de adecuación del capital según metodología S&P y proyecciones.'}
             </div>

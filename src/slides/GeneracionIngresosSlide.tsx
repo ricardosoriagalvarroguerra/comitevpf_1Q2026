@@ -45,10 +45,10 @@ export function GeneracionIngresosSlide() {
               </tr>
               <tr>
                 <th>Saldo Promedio</th>
-                <th>Ingresos</th>
+                <th>Resultados</th>
                 <th>Retorno %</th>
                 <th className="fin-table-slide__group-sep">Saldo Promedio</th>
-                <th>Ingresos</th>
+                <th>Resultados</th>
                 <th>Retorno %</th>
               </tr>
             </thead>

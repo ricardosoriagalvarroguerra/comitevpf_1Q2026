@@ -229,16 +229,16 @@ export function ProyeccionesDesembolsosSlide({
             <span className="debt-sources__value-unit">USD MM</span>
           </Card>
           <Card padding="md" className="debt-sources__value-card">
-            <span className="debt-sources__value-label">Mar 2026 – Mar 2027</span>
+            <span className="debt-sources__value-label">Por asignar 2026</span>
             <span className="debt-sources__value-number">
-              {nfMillions1.format(marzo26AMarzo27 / 1_000_000)}
+              {nfMillions1.format(PORASIGNAR_2026 / 1_000_000)}
             </span>
             <span className="debt-sources__value-unit">USD MM</span>
           </Card>
           <Card padding="md" className="debt-sources__value-card">
-            <span className="debt-sources__value-label">Por asignar 2026</span>
+            <span className="debt-sources__value-label">Mar 2026 – Mar 2027</span>
             <span className="debt-sources__value-number">
-              {nfMillions1.format(PORASIGNAR_2026 / 1_000_000)}
+              {nfMillions1.format(marzo26AMarzo27 / 1_000_000)}
             </span>
             <span className="debt-sources__value-unit">USD MM</span>
           </Card>
@@ -257,9 +257,6 @@ export function ProyeccionesDesembolsosSlide({
                 <span className="proyecciones-legend__chip proyecciones-legend__chip--proyectado" />
                 Proyectado
               </span>
-              <span>
-                Total: <strong>{nfMillions.format(gs.grandTotal / 1_000_000)} M USD</strong>
-              </span>
             </>
           }
         />
@@ -267,11 +264,6 @@ export function ProyeccionesDesembolsosSlide({
           title="Sin Garantía Soberana"
           columns={buildColumns()}
           rows={sns.rows}
-          headerRight={
-            <span>
-              Total: <strong>{nfMillions.format(sns.grandTotal / 1_000_000)} M USD</strong>
-            </span>
-          }
         />
       </div>
     </div>
