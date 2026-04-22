@@ -1,5 +1,8 @@
+import type { ReactNode } from 'react'
 import { TextCard } from '@/components/cards/TextCard'
+import { Card } from '@/components/ui/Card'
 import { ChartPlaceholder, type ChartType } from '@/components/cards/ChartPlaceholder'
+import { CapacityLimitChart } from '@/components/charts/CapacityLimitChart'
 import './DualChartsSlide.css'
 
 interface DualChartsSlideProps {
@@ -7,8 +10,29 @@ interface DualChartsSlideProps {
   title: string
   description?: string
   highlights?: string[]
-  chart1: { title: string; chartType: ChartType; unit?: string }
+  chart1: { title: string; chartType: ChartType; unit?: string; component?: 'capacity-limit' }
   chart2: { title: string; chartType: ChartType; unit?: string }
+}
+
+function renderChart1(chart1: DualChartsSlideProps['chart1']): ReactNode {
+  if (chart1.component === 'capacity-limit') {
+    return (
+      <Card
+        padding="md"
+        className="dual-charts__chart dual-charts__chart--primary dual-charts__chart--custom"
+      >
+        <CapacityLimitChart title={chart1.title} />
+      </Card>
+    )
+  }
+  return (
+    <ChartPlaceholder
+      title={chart1.title}
+      chartType={chart1.chartType}
+      unit={chart1.unit}
+      className="dual-charts__chart dual-charts__chart--primary"
+    />
+  )
 }
 
 export function DualChartsSlide({
@@ -37,12 +61,7 @@ export function DualChartsSlide({
           className="dual-charts__chart dual-charts__chart--secondary"
         />
       </div>
-      <ChartPlaceholder
-        title={chart1.title}
-        chartType={chart1.chartType}
-        unit={chart1.unit}
-        className="dual-charts__chart dual-charts__chart--primary"
-      />
+      {renderChart1(chart1)}
     </div>
   )
 }

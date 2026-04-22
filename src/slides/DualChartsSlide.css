@@ -27,3 +27,9 @@
 .dual-charts__chart--primary {
   width: 100%;
 }
+
+.dual-charts__chart--custom {
+  min-height: clamp(280px, 34vh, 380px);
+  display: flex;
+  flex-direction: column;
+}

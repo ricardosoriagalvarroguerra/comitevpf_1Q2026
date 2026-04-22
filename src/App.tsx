@@ -228,7 +228,7 @@ function SlideRenderer() {
       title: 'Exposición de Cartera al Riesgo',
       description: 'Concentración por país y calificación crediticia.',
       highlights: ['Límite por país: 35% de cartera', 'Concentración por calificación'],
-      chart1: { title: 'Límite de Capacidad Prestable', chartType: 'line' as const, unit: '%' },
+      chart1: { title: 'Límite de Capacidad Prestable', chartType: 'stacked-bar' as const, unit: 'USD MM', component: 'capacity-limit' as const },
       chart2: { title: 'Capacidad disponible vs. etapas por activar', chartType: 'stacked-bar' as const, unit: 'USD MM' },
     },
     'adecuacion-del-capital': {
