@@ -179,7 +179,7 @@
 /* ── Fixed panel (legend + tooltip combined, inline row) ── */
 .spread-chart__panel {
   position: absolute;
-  top: 0;
+  top: -32px;
   left: 0;
   right: 0;
   display: flex;
