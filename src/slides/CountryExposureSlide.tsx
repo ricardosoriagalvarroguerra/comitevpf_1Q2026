@@ -29,8 +29,10 @@ interface LimitStackedChartProps {
   title: string
   barColor: string
   valueLabel: string
+  disponibleLabel?: string
   getUsado: (p: (typeof CAPACIDAD_PRESTABLE)[number], c: CapacidadCountry) => number
-  getLimite: (p: (typeof CAPACIDAD_PRESTABLE)[number], c: CapacidadCountry) => number
+  getTopSegment: (p: (typeof CAPACIDAD_PRESTABLE)[number], c: CapacidadCountry) => number
+  getTopLabel: (p: (typeof CAPACIDAD_PRESTABLE)[number], c: CapacidadCountry) => number
 }
 
 function LimitStackedChart({
@@ -38,8 +40,10 @@ function LimitStackedChart({
   title,
   barColor,
   valueLabel,
+  disponibleLabel = 'Disponible',
   getUsado,
-  getLimite,
+  getTopSegment,
+  getTopLabel,
 }: LimitStackedChartProps) {
   const data = CAPACIDAD_PRESTABLE
 
@@ -49,11 +53,17 @@ function LimitStackedChart({
   const innerW = W - margin.left - margin.right
   const innerH = H - margin.top - margin.bottom
 
-  const rows = data.map((p) => ({
-    period: p.period,
-    usado: getUsado(p, country),
-    limite: getLimite(p, country),
-  }))
+  const rows = data.map((p) => {
+    const usado = getUsado(p, country)
+    const topSeg = getTopSegment(p, country)
+    return {
+      period: p.period,
+      usado,
+      topSeg,
+      total: usado + topSeg,
+      topLabel: getTopLabel(p, country),
+    }
+  })
 
   const x = useMemo(
     () =>
@@ -66,7 +76,7 @@ function LimitStackedChart({
   )
 
   const maxY = useMemo(
-    () => (d3.max(rows, (d) => d.limite) ?? 1) * 1.16,
+    () => (d3.max(rows, (d) => Math.max(d.total, d.topLabel)) ?? 1) * 1.16,
     [rows],
   )
 
@@ -93,7 +103,7 @@ function LimitStackedChart({
           </span>
           <span className="capacity-limit-chart__legend-item">
             <span className="capacity-limit-chart__legend-swatch capacity-limit-chart__legend-swatch--dashed" />
-            Disponible
+            {disponibleLabel}
           </span>
         </div>
       </div>
@@ -136,11 +146,10 @@ function LimitStackedChart({
           {rows.map((d) => {
             const cx = x(d.period) ?? 0
             const bw = x.bandwidth()
-            const disp = Math.max(0, d.limite - d.usado)
-            const yUsadoTop = y(Math.min(d.usado, d.limite))
+            const yUsadoTop = y(d.usado)
             const hUsado = innerH - yUsadoTop
-            const yDispTop = y(d.limite)
-            const hDisp = y(Math.min(d.usado, d.limite)) - y(d.limite)
+            const yTopSegTop = y(d.total)
+            const hTopSeg = y(d.usado) - y(d.total)
 
             return (
               <g key={d.period}>
@@ -154,9 +163,9 @@ function LimitStackedChart({
                 />
                 <rect
                   x={cx + 0.5}
-                  y={yDispTop}
+                  y={yTopSegTop}
                   width={Math.max(0, bw - 1)}
-                  height={Math.max(0, hDisp)}
+                  height={Math.max(0, hTopSeg)}
                   className="capacity-limit-chart__bar--disponible"
                 />
                 {hUsado > 16 && (
@@ -170,24 +179,24 @@ function LimitStackedChart({
                     {fmt1(d.usado)}
                   </text>
                 )}
-                {hDisp > 14 && (
+                {hTopSeg > 14 && (
                   <text
                     className="capacity-limit-chart__segment-label capacity-limit-chart__segment-label--disponible"
                     x={cx + bw / 2}
-                    y={yDispTop + hDisp / 2}
+                    y={yTopSegTop + hTopSeg / 2}
                     dy="0.32em"
                     textAnchor="middle"
                   >
-                    {fmt1(disp)}
+                    {fmt1(d.topSeg)}
                   </text>
                 )}
                 <text
                   className="capacity-limit-chart__max-label"
                   x={cx + bw / 2}
-                  y={yDispTop - 5}
+                  y={yTopSegTop - 5}
                   textAnchor="middle"
                 >
-                  {fmt1(d.limite)}
+                  {fmt1(d.topLabel)}
                 </text>
               </g>
             )
@@ -441,7 +450,8 @@ export function CountryExposureSlide({
             barColor={COLOR_UTILIZADA}
             valueLabel="Utilizada"
             getUsado={(p, c) => p.utilizadaPorPais[c]}
-            getLimite={limiteCapacidad}
+            getTopSegment={(p, c) => Math.max(0, limiteCapacidad(p, c) - p.utilizadaPorPais[c])}
+            getTopLabel={limiteCapacidad}
           />
         </Card>
         <Card padding="md" className="country-exposure__chart-card">
@@ -450,8 +460,10 @@ export function CountryExposureSlide({
             title="Límite de Activos Totales"
             barColor={COLOR_POR_COBRAR}
             valueLabel="Por cobrar"
+            disponibleLabel="Otros activos"
             getUsado={(p, c) => p.porCobrarPorPais[c]}
-            getLimite={limiteActivos}
+            getTopSegment={(p, c) => Math.max(0, p.activosTotales - p.porCobrarPorPais[c])}
+            getTopLabel={(p) => p.activosTotales}
           />
         </Card>
       </div>
