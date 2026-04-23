@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { Card } from '@/components/ui/Card'
 import {
   CapitalAdequacyCombinedChart,
@@ -9,6 +9,7 @@ import {
   type RacPoint,
 } from '@/components/charts/RacSpChart'
 import './CapitalAdequacySlide.css'
+import './LiquidityDashboardSlide.css'
 
 const RAC_SP_DATA: RacPoint[] = [
   { year: 2020, rac: 26.4 },
@@ -20,6 +21,10 @@ const RAC_SP_DATA: RacPoint[] = [
   { year: 2026, rac: 35.5, projected: true },
   { year: 2027, rac: 34.0, projected: true },
 ]
+
+const RAC_SP_DPP_DATA: RacPoint[] = RAC_SP_DATA.map((d) =>
+  d.year === 2026 ? { ...d, rac: 35.3 } : d.year === 2027 ? { ...d, rac: 33.7 } : d,
+)
 
 const CAPITAL_ADEQUACY_DATA: CapitalAdequacyPoint[] = [
   { period: '12/20', ratio: 80.19, activosAjustados: 1388.467, patrimonio: 1113.397 },
@@ -49,6 +54,28 @@ export function CapitalAdequacySlide({
   detailTitle,
   detailDescription,
 }: CapitalAdequacySlideProps) {
+  const [racScenario, setRacScenario] = useState<'vpo' | 'dpp'>('vpo')
+  const [racScenarioOpen, setRacScenarioOpen] = useState(false)
+
+  useEffect(() => {
+    if (!racScenarioOpen) return
+    const onDocClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (!target.closest('.capital-adequacy__scenario')) {
+        setRacScenarioOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', onDocClick)
+    return () => document.removeEventListener('mousedown', onDocClick)
+  }, [racScenarioOpen])
+
+  const racScenarioOptions: Array<{ value: 'vpo' | 'dpp'; label: string }> = [
+    { value: 'vpo', label: 'Escenario VPO' },
+    { value: 'dpp', label: 'Escenario DPP Promedio' },
+  ]
+  const currentRacScenario = racScenarioOptions.find((o) => o.value === racScenario)!
+  const racData = racScenario === 'dpp' ? RAC_SP_DPP_DATA : RAC_SP_DATA
+
   return (
     <div className="capital-adequacy">
       <div className="capital-adequacy__top">
@@ -81,8 +108,40 @@ export function CapitalAdequacySlide({
               <span className="capital-adequacy__detail-title">
                 {detailTitle ?? 'Ratio de Capital Ajustado por Riesgo (RAC) S&P'}
               </span>
+              <div className="liq-dashboard__scenario capital-adequacy__scenario">
+                <button
+                  type="button"
+                  className="liq-dashboard__scenario-btn"
+                  onClick={() => setRacScenarioOpen((v) => !v)}
+                  aria-haspopup="listbox"
+                  aria-expanded={racScenarioOpen}
+                >
+                  <span>{currentRacScenario.label}</span>
+                  <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 6l4 4 4-4" />
+                  </svg>
+                </button>
+                {racScenarioOpen && (
+                  <ul className="liq-dashboard__scenario-menu" role="listbox">
+                    {racScenarioOptions.map((o) => (
+                      <li key={o.value} role="option" aria-selected={o.value === racScenario}>
+                        <button
+                          type="button"
+                          className={`liq-dashboard__scenario-option ${o.value === racScenario ? 'liq-dashboard__scenario-option--active' : ''}`}
+                          onClick={() => {
+                            setRacScenario(o.value)
+                            setRacScenarioOpen(false)
+                          }}
+                        >
+                          {o.label}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
-            <RacSpChart data={RAC_SP_DATA} />
+            <RacSpChart data={racData} />
           </Card>
         </div>
         <div className="capital-adequacy__detail-text">
