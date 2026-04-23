@@ -10,19 +10,19 @@ interface ProyeccionesDesembolsosSlideProps {
 }
 
 const MESES = [
-  'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-  'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
+  'Ene-26', 'Feb-26', 'Mar-26', 'Abr-26', 'May-26', 'Jun-26',
+  'Jul-26', 'Ago-26', 'Sep-26', 'Oct-26', 'Nov-26', 'Dic-26',
 ]
 
-const MESES_2027 = ['Enero 2027', 'Febrero 2027', 'Marzo 2027']
+const MESES_2027 = ['Ene-27', 'Feb-27', 'Mar-27']
 
 const nfMillions = new Intl.NumberFormat('es-ES', {
   minimumFractionDigits: 0,
   maximumFractionDigits: 2,
 })
-const nfMillions1 = new Intl.NumberFormat('es-ES', {
-  minimumFractionDigits: 1,
-  maximumFractionDigits: 1,
+const nfCard = new Intl.NumberFormat('es-ES', {
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
 })
 
 const GS_DATA: Record<string, number[]> = {
@@ -224,21 +224,21 @@ export function ProyeccionesDesembolsosSlide({
           <Card padding="md" className="debt-sources__value-card">
             <span className="debt-sources__value-label">Total 2026</span>
             <span className="debt-sources__value-number">
-              {nfMillions1.format(combinedTotal / 1_000_000)}
+              {nfCard.format(combinedTotal / 1_000_000)}
             </span>
             <span className="debt-sources__value-unit">USD MM</span>
           </Card>
           <Card padding="md" className="debt-sources__value-card">
             <span className="debt-sources__value-label">Por asignar 2026</span>
             <span className="debt-sources__value-number">
-              {nfMillions1.format(PORASIGNAR_2026 / 1_000_000)}
+              {nfCard.format(PORASIGNAR_2026 / 1_000_000)}
             </span>
             <span className="debt-sources__value-unit">USD MM</span>
           </Card>
           <Card padding="md" className="debt-sources__value-card">
             <span className="debt-sources__value-label">Mar 2026 – Mar 2027</span>
             <span className="debt-sources__value-number">
-              {nfMillions1.format(marzo26AMarzo27 / 1_000_000)}
+              {nfCard.format(marzo26AMarzo27 / 1_000_000)}
             </span>
             <span className="debt-sources__value-unit">USD MM</span>
           </Card>
