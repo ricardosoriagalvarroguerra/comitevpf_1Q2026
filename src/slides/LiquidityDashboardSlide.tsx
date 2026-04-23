@@ -250,12 +250,25 @@ export function LiquidityDashboardSlide({
                 </button>
               </div>
               <p className="liq-dashboard__info-text">
-                Las proyecciones de liquidez para 2026 y 2027 consideran como
-                supuesto de desembolsos las proyecciones de la Vicepresidencia
-                de Operaciones:{' '}
-                <strong>USD 543M en 2026</strong>,{' '}
-                <strong>USD 658M en 2027</strong> y{' '}
-                <strong>USD 766M en 2028</strong>.
+                {scenario === 'dpp' ? (
+                  <>
+                    Las proyecciones de liquidez para 2026 y 2027 consideran
+                    como supuesto de desembolsos las proyecciones usadas para
+                    el presupuesto:{' '}
+                    <strong>USD 735M en 2026</strong>,{' '}
+                    <strong>USD 770M en 2027</strong> y{' '}
+                    <strong>USD 808M en 2028</strong>.
+                  </>
+                ) : (
+                  <>
+                    Las proyecciones de liquidez para 2026 y 2027 consideran
+                    como supuesto de desembolsos las proyecciones de la
+                    Vicepresidencia de Operaciones:{' '}
+                    <strong>USD 543M en 2026</strong>,{' '}
+                    <strong>USD 658M en 2027</strong> y{' '}
+                    <strong>USD 766M en 2028</strong>.
+                  </>
+                )}
               </p>
             </div>
           </div>,
