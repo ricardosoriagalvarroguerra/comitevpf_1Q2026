@@ -44,7 +44,7 @@ const COVERAGE_DATA: CoveragePoint[] = [
   { year: 2023, fonplata: 103 },
   { year: 2024, fonplata: 160 },
   { year: 2025, fonplata: 159 },
-  { year: 2026, fonplata: 168, projected: true },
+  { year: 2026, fonplata: 153, projected: true },
   { year: 2027, fonplata: 192, projected: true },
 ]
 
@@ -54,8 +54,8 @@ const SP_COVERAGE_DATA: SpCoveragePoint[] = [
   { year: 2023, fonplata: 1.0 },
   { year: 2024, fonplata: 1.3 },
   { year: 2025, fonplata: 1.6 },
-  { year: 2026, fonplata: 1.63, projected: true },
-  { year: 2027, fonplata: 1.60, projected: true },
+  { year: 2026, fonplata: 1.50, projected: true },
+  { year: 2027, fonplata: 1.49, projected: true },
 ]
 
 const ASSET_STRUCTURE_DATA: AssetPoint[] = [
@@ -64,8 +64,8 @@ const ASSET_STRUCTURE_DATA: AssetPoint[] = [
   { year: 2023, ratio: 27.7 },
   { year: 2024, ratio: 24.2 },
   { year: 2025, ratio: 35.6 },
-  { year: 2026, ratio: 36.5, projected: true },
-  { year: 2027, ratio: 36.4, projected: true },
+  { year: 2026, ratio: 32.9, projected: true },
+  { year: 2027, ratio: 33.2, projected: true },
 ]
 
 const DPP_LIQUIDITY_DATA: LiquidityPoint[] = [
