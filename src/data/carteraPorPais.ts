@@ -33,8 +33,8 @@ export const CARTERA_COUNTRIES: CarteraCountry[] = [
   'BOL',
   'BRA',
   'PAR',
-  'RNS',
   'URU',
+  'RNS',
 ]
 
 const raw: Array<[CarteraCountry, string, number, number, number, number]> = [

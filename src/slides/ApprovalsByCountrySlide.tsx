@@ -183,6 +183,17 @@ export function ApprovalsByCountrySlide({
         </div>
       </div>
       <div className="approvals-slide__grid">
+        <Card padding="md" className="approvals-slide__card">
+          <ApprovalsCountryChart
+            title="General"
+            data={buildGeneral(DATA)}
+            width={400}
+            height={200}
+            onHoverChange={(p) =>
+              setHover(p ? { source: 'General', point: p } : null)
+            }
+          />
+        </Card>
         {COUNTRIES.map((c) => (
           <Card key={c} padding="md" className="approvals-slide__card">
             <ApprovalsCountryChart
@@ -197,17 +208,6 @@ export function ApprovalsByCountrySlide({
             />
           </Card>
         ))}
-        <Card padding="md" className="approvals-slide__card">
-          <ApprovalsCountryChart
-            title="General"
-            data={buildGeneral(DATA)}
-            width={400}
-            height={200}
-            onHoverChange={(p) =>
-              setHover(p ? { source: 'General', point: p } : null)
-            }
-          />
-        </Card>
       </div>
     </div>
   )

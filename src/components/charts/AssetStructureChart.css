@@ -35,7 +35,7 @@
 }
 
 .asset-struct__data-label {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: var(--font-semibold);
   font-variant-numeric: tabular-nums;
   fill: var(--color-accent);

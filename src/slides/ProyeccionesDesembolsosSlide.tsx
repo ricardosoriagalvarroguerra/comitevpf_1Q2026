@@ -207,9 +207,9 @@ export function ProyeccionesDesembolsosSlide({
       (s, arr) => s + arr.slice(from, to + 1).reduce((x, v) => x + v, 0),
       0,
     )
-  const marzo26AMarzo27 =
-    sumRange(GS_DATA, 2, 11) +
-    sumRange(SNS_DATA, 2, 11) +
+  const abril26AMarzo27 =
+    sumRange(GS_DATA, 3, 11) +
+    sumRange(SNS_DATA, 3, 11) +
     sumRange(GS_2027_Q1, 0, 2) +
     sumRange(SNS_2027_Q1, 0, 2)
   const PORASIGNAR_2026 = 172_000_000
@@ -236,9 +236,9 @@ export function ProyeccionesDesembolsosSlide({
             <span className="debt-sources__value-unit">USD MM</span>
           </Card>
           <Card padding="md" className="debt-sources__value-card">
-            <span className="debt-sources__value-label">Mar 2026 – Mar 2027</span>
+            <span className="debt-sources__value-label">12 meses</span>
             <span className="debt-sources__value-number">
-              {nfCard.format(marzo26AMarzo27 / 1_000_000)}
+              {nfCard.format(abril26AMarzo27 / 1_000_000)}
             </span>
             <span className="debt-sources__value-unit">USD MM</span>
           </Card>
