@@ -191,6 +191,12 @@ export function CapacityLimitChart({
 
             const isHover = hover === i
             const faded = hover !== null && !isHover
+            const isProjected = d.period !== 'Q1-2026'
+            const utilOpacity = faded
+              ? 0.35
+              : isProjected
+                ? 0.5
+                : 0.92
 
             return (
               <g key={d.period}>
@@ -201,7 +207,7 @@ export function CapacityLimitChart({
                   width={bw}
                   height={Math.max(0, hUtil)}
                   fill={COLOR_UTILIZADA}
-                  opacity={faded ? 0.35 : 0.92}
+                  opacity={utilOpacity}
                 />
                 <rect
                   className="capacity-limit-chart__bar capacity-limit-chart__bar--disponible"

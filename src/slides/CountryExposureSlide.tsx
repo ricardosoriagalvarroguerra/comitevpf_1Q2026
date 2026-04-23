@@ -150,6 +150,7 @@ function LimitStackedChart({
             const hUsado = innerH - yUsadoTop
             const yTopSegTop = y(d.total)
             const hTopSeg = y(d.usado) - y(d.total)
+            const isProjected = d.period !== 'Q1-2026'
 
             return (
               <g key={d.period}>
@@ -159,7 +160,7 @@ function LimitStackedChart({
                   width={bw}
                   height={Math.max(0, hUsado)}
                   fill={barColor}
-                  opacity={0.92}
+                  opacity={isProjected ? 0.5 : 0.92}
                 />
                 <rect
                   x={cx + 0.5}
