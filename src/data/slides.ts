@@ -15,8 +15,8 @@ export const slides: SlideConfig[] = [
   // ── Situación Financiera ──
   { id: 'section-situacion-financiera', type: 'section-title', variant: 'section' },
   { id: 'cambios-activos-pasivos', type: 'cambios-activos-pasivos', variant: 'content' },
-  { id: 'generacion-ingresos', type: 'generacion-ingresos', variant: 'content' },
   { id: 'estado-resultados', type: 'estado-resultados', variant: 'content' },
+  { id: 'generacion-ingresos', type: 'generacion-ingresos', variant: 'content' },
 
   // ── Cartera ──
   { id: 'section-cartera', type: 'section-title', variant: 'section' },
@@ -59,8 +59,8 @@ export const navigationTopics: TopicGroup[] = [
     description: 'Balance, ingresos y resultados',
     items: [
       { id: 'cambios-activos-pasivos', label: 'Cambios en activos y pasivos financieros' },
-      { id: 'generacion-ingresos', label: '¿Cómo se generan los ingresos?' },
       { id: 'estado-resultados', label: 'Estado de Resultados' },
+      { id: 'generacion-ingresos', label: '¿Cómo se generan los ingresos?' },
     ],
   },
   {
