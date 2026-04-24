@@ -220,9 +220,9 @@ const PALETTE_RATING = {
 }
 
 const SECTOR_DATA: DonutDatum[] = [
-  { id: 'multilateral', label: 'Multilateral', value: 46, color: PALETTE_SECTOR.multilateral },
-  { id: 'financiero', label: 'Financiero', value: 42, color: PALETTE_SECTOR.financiero },
-  { id: 'soberano', label: 'Soberano', value: 11, color: PALETTE_SECTOR.soberano },
+  { id: 'soberano', label: 'Soberano', value: 46, color: PALETTE_SECTOR.soberano },
+  { id: 'multilateral', label: 'Multilateral', value: 42, color: PALETTE_SECTOR.multilateral },
+  { id: 'financiero', label: 'Financiero', value: 11, color: PALETTE_SECTOR.financiero },
 ]
 
 const REGION_DATA: DonutDatum[] = [
